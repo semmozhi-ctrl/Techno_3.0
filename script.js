@@ -1,23 +1,149 @@
-// Configuration - Set your event deadline here
-// Set this to a past date to show results immediately, or future date for countdown
-const DEADLINE = new Date('2025-10-08T23:59:59').getTime(); // Change this to your actual deadline
+// Configuration - Set your event deadlines here
+const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM
+const DEADLINE_LEVEL2 = new Date('2025-10-16T20:00:00').getTime(); // Oct 16, 8:00 PM
+
+// Mobile Navigation Toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const isExpanded = navLinks.classList.contains('active');
+        navToggle.setAttribute('aria-expanded', isExpanded);
+        navToggle.textContent = isExpanded ? '✕' : '☰';
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isExpanded ? 'hidden' : '';
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.textContent = '☰';
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.textContent = '☰';
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Draggable Sticky Notes (Miro-style)
+class DraggableSticky {
+    constructor(element) {
+        this.element = element;
+        this.isDragging = false;
+        this.currentX = 0;
+        this.currentY = 0;
+        this.initialX = 0;
+        this.initialY = 0;
+        this.xOffset = 0;
+        this.yOffset = 0;
+        
+        this.init();
+    }
+    
+    init() {
+        // Mouse events
+        this.element.addEventListener('mousedown', this.dragStart.bind(this));
+        document.addEventListener('mousemove', this.drag.bind(this));
+        document.addEventListener('mouseup', this.dragEnd.bind(this));
+        
+        // Touch events
+        this.element.addEventListener('touchstart', this.dragStart.bind(this), { passive: false });
+        document.addEventListener('touchmove', this.drag.bind(this), { passive: false });
+        document.addEventListener('touchend', this.dragEnd.bind(this));
+    }
+    
+    dragStart(e) {
+        if (e.type === 'touchstart') {
+            this.initialX = e.touches[0].clientX - this.xOffset;
+            this.initialY = e.touches[0].clientY - this.yOffset;
+        } else {
+            this.initialX = e.clientX - this.xOffset;
+            this.initialY = e.clientY - this.yOffset;
+        }
+        
+        if (e.target === this.element) {
+            this.isDragging = true;
+            this.element.style.zIndex = 1000;
+        }
+    }
+    
+    drag(e) {
+        if (this.isDragging) {
+            e.preventDefault();
+            
+            if (e.type === 'touchmove') {
+                this.currentX = e.touches[0].clientX - this.initialX;
+                this.currentY = e.touches[0].clientY - this.initialY;
+            } else {
+                this.currentX = e.clientX - this.initialX;
+                this.currentY = e.clientY - this.initialY;
+            }
+            
+            this.xOffset = this.currentX;
+            this.yOffset = this.currentY;
+            
+            this.setTranslate(this.currentX, this.currentY);
+        }
+    }
+    
+    dragEnd(e) {
+        this.isDragging = false;
+        this.element.style.zIndex = '';
+    }
+    
+    setTranslate(xPos, yPos) {
+        const rotation = this.element.style.getPropertyValue('--rot') || '0deg';
+        this.element.style.transform = `translate(${xPos}px, ${yPos}px) rotate(${rotation})`;
+    }
+}
+
+// Initialize draggable stickies
+document.addEventListener('DOMContentLoaded', () => {
+    const stickies = document.querySelectorAll('.sticky');
+    stickies.forEach(sticky => new DraggableSticky(sticky));
+});
 
 // Countdown Timer
 function updateCountdown() {
     const now = new Date().getTime();
-    const distance = DEADLINE - now;
+    
+    // Update Level 1 Countdown
+    updateLevelCountdown(DEADLINE_LEVEL1, 'l1', 'Level 1 Submission');
+    
+    // Update Level 2 Countdown
+    updateLevelCountdown(DEADLINE_LEVEL2, 'l2', 'Level 2 Semi-Final');
+}
+
+function updateLevelCountdown(deadline, suffix, eventName) {
+    const now = new Date().getTime();
+    const distance = deadline - now;
     
     if (distance < 0) {
         // Deadline has passed
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        document.getElementById('deadline-status').innerHTML = 
-            '<span style="color: #f5576c; font-weight: 600;">⏰ Submission Deadline Passed! Results will be announced soon.</span>';
+        document.getElementById(`days-${suffix}`).textContent = '00';
+        document.getElementById(`hours-${suffix}`).textContent = '00';
+        document.getElementById(`minutes-${suffix}`).textContent = '00';
+        document.getElementById(`seconds-${suffix}`).textContent = '00';
+        document.getElementById(`deadline-status-${suffix}`).innerHTML = 
+            '<span style="color: #f5576c; font-weight: 600;">⏰ Deadline Passed!</span>';
         
-        // Show results after deadline
-        loadResults();
+        // Load results after Level 1 deadline
+        if (suffix === 'l1') {
+            loadResults();
+        }
         return;
     }
     
@@ -28,41 +154,43 @@ function updateCountdown() {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
     // Update countdown display
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    document.getElementById(`days-${suffix}`).textContent = String(days).padStart(2, '0');
+    document.getElementById(`hours-${suffix}`).textContent = String(hours).padStart(2, '0');
+    document.getElementById(`minutes-${suffix}`).textContent = String(minutes).padStart(2, '0');
+    document.getElementById(`seconds-${suffix}`).textContent = String(seconds).padStart(2, '0');
     
     // Update deadline status
     if (days > 0) {
-        document.getElementById('deadline-status').innerHTML = 
-            `<span style="color: #4facfe;">📅 Submission closes in ${days} day${days > 1 ? 's' : ''}</span>`;
+        document.getElementById(`deadline-status-${suffix}`).innerHTML = 
+            `<span style="color: #4facfe;">📅 ${eventName} closes in ${days} day${days > 1 ? 's' : ''}</span>`;
     } else if (hours > 0) {
-        document.getElementById('deadline-status').innerHTML = 
+        document.getElementById(`deadline-status-${suffix}`).innerHTML = 
             `<span style="color: #f5576c; font-weight: 600;">⚠️ Hurry! Only ${hours} hour${hours > 1 ? 's' : ''} remaining!</span>`;
     } else {
-        document.getElementById('deadline-status').innerHTML = 
+        document.getElementById(`deadline-status-${suffix}`).innerHTML = 
             `<span style="color: #f5576c; font-weight: 700; animation: pulse 1s infinite;">🔥 Last ${minutes} minutes! Submit now!</span>`;
     }
 }
 
 // Load Results from JSON
 async function loadResults() {
-    const resultsGrid = document.getElementById('results-grid');
+    const ideathonGrid = document.getElementById('ideathon-grid');
+    const vibeCodingGrid = document.getElementById('vibecoding-grid');
     const resultsStatus = document.getElementById('results-status');
     
     const now = new Date().getTime();
-    const distance = DEADLINE - now;
+    const level1Passed = DEADLINE_LEVEL1 - now < 0;
     
-    // Check if deadline has passed
-    if (distance > 0) {
+    // Check if Level 1 deadline has passed
+    if (!level1Passed) {
         resultsStatus.innerHTML = `
             <p style="color: var(--text-secondary);">
-                🕐 Results will be published after the submission deadline.<br>
+                🕐 Results will be published after Level 1 deadline (Oct 14, 8:00 PM).<br>
                 <strong>Stay tuned!</strong>
             </p>
         `;
-        resultsGrid.innerHTML = '';
+        ideathonGrid.innerHTML = '';
+        vibeCodingGrid.innerHTML = '';
         return;
     }
     
@@ -73,28 +201,38 @@ async function loadResults() {
         if (data.resultsPublished) {
             resultsStatus.innerHTML = `
                 <p style="color: #4facfe; font-weight: 600;">
-                    🎉 Congratulations to all Semi-Finalists! 🎉<br>
+                    🎉 Congratulations to all Level 2 Qualifiers! 🎉<br>
                     <span style="color: var(--text-secondary); font-size: 1rem;">
-                        The following participants have qualified for the Semi-Final round (Offline).
+                        Click on any team card to see full details and celebrate their qualification!
                     </span>
                 </p>
             `;
             
-            if (data.participants && data.participants.length > 0) {
-                resultsGrid.innerHTML = data.participants.map((participant, index) => `
-                    <div class="result-card">
-                        <div class="result-rank">Rank #${index + 1}</div>
-                        <h3>${participant.projectName}</h3>
-                        <p class="result-category">${participant.category}</p>
-                        <p class="result-team"><strong>Team:</strong> ${participant.teamName}</p>
-                        <p class="result-team"><strong>Members:</strong> ${participant.members.join(', ')}</p>
-                        ${participant.github ? `<p class="result-team"><strong>GitHub:</strong> <a href="${participant.github}" target="_blank" style="color: #667eea;">View Code</a></p>` : ''}
-                        ${participant.deployLink ? `<p class="result-team"><strong>Demo:</strong> <a href="${participant.deployLink}" target="_blank" style="color: #667eea;">View Live</a></p>` : ''}
-                    </div>
-                `).join('');
+            // Separate participants by category
+            const ideathonParticipants = data.participants.filter(p => p.category === 'Ideathon');
+            const vibeCodingParticipants = data.participants.filter(p => p.category === 'Vibe Coding');
+            
+            // Render Ideathon results
+            if (ideathonParticipants.length > 0) {
+                ideathonGrid.innerHTML = ideathonParticipants.map((participant, index) => 
+                    createResultCard(participant, index + 1)
+                ).join('');
             } else {
-                resultsGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
+                ideathonGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
+            
+            // Render Vibe Coding results
+            if (vibeCodingParticipants.length > 0) {
+                vibeCodingGrid.innerHTML = vibeCodingParticipants.map((participant, index) => 
+                    createResultCard(participant, index + 1)
+                ).join('');
+            } else {
+                vibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
+            }
+            
+            // Add click handlers to all result cards
+            addResultCardClickHandlers();
+            
         } else {
             resultsStatus.innerHTML = `
                 <p style="color: var(--text-secondary);">
@@ -102,7 +240,8 @@ async function loadResults() {
                     <strong>Check back in a few hours!</strong>
                 </p>
             `;
-            resultsGrid.innerHTML = '';
+            ideathonGrid.innerHTML = '';
+            vibeCodingGrid.innerHTML = '';
         }
     } catch (error) {
         console.error('Error loading results:', error);
@@ -112,9 +251,93 @@ async function loadResults() {
                 <strong>Check back in a few hours!</strong>
             </p>
         `;
-        resultsGrid.innerHTML = '';
+        ideathonGrid.innerHTML = '';
+        vibeCodingGrid.innerHTML = '';
     }
 }
+
+// Create result card HTML
+function createResultCard(participant, rank) {
+    const leaderName = participant.members && participant.members.length > 0 ? participant.members[0] : 'N/A';
+    
+    return `
+        <div class="result-card qualified" data-team="${participant.teamName}">
+            <div class="result-rank">Rank #${rank}</div>
+            <h3>${participant.teamName}</h3>
+            <p class="result-category">Leader: <strong>${leaderName}</strong></p>
+            <div class="result-team"><strong>All Members:</strong> ${participant.members.join(', ')}</div>
+            <div class="result-team"><strong>Project:</strong> ${participant.projectName}</div>
+            ${participant.github ? `<div class="result-team"><strong>GitHub:</strong> <a href="${participant.github}" target="_blank" style="color: #667eea;">View Code</a></div>` : ''}
+            ${participant.deployLink ? `<div class="result-team"><strong>Demo:</strong> <a href="${participant.deployLink}" target="_blank" style="color: #667eea;">View Live</a></div>` : ''}
+            <div class="next-level-badge">✨ Qualified for Level 2! ✨</div>
+        </div>
+    `;
+}
+
+// Add click handlers to result cards for expansion
+function addResultCardClickHandlers() {
+    const resultCards = document.querySelectorAll('.result-card');
+    
+    resultCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't expand when clicking links
+            if (e.target.tagName === 'A') return;
+            
+            // Toggle expanded state
+            const wasExpanded = this.classList.contains('expanded');
+            
+            // Close all other cards
+            resultCards.forEach(c => c.classList.remove('expanded'));
+            
+            // Toggle this card
+            if (!wasExpanded) {
+                this.classList.add('expanded');
+                createConfetti(this);
+            }
+        });
+    });
+}
+
+// Create confetti effect on card click
+function createConfetti(card) {
+    const colors = ['#667eea', '#764ba2', '#f5576c', '#4facfe', '#06ffa5'];
+    const rect = card.getBoundingClientRect();
+    
+    for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${rect.left + rect.width / 2}px`;
+        confetti.style.top = `${rect.top + rect.height / 2}px`;
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = `${Math.random() * 0.3}s`;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
+
+// Event Tab Switching
+document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const eventResults = document.querySelectorAll('.event-results');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all tabs and results
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            eventResults.forEach(result => result.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            button.classList.add('active');
+            
+            // Show corresponding results
+            const eventType = button.getAttribute('data-event');
+            document.getElementById(`${eventType}-results`).classList.add('active');
+        });
+    });
+});
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -122,9 +345,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -156,9 +382,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     
-    // Load results if deadline has passed
+    // Load results if Level 1 deadline has passed
     const now = new Date().getTime();
-    if (DEADLINE - now < 0) {
+    if (DEADLINE_LEVEL1 - now < 0) {
         loadResults();
     }
 });
@@ -174,14 +400,75 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
         }
     });
 }, observerOptions);
 
-// Observe all cards
-document.querySelectorAll('.about-card, .level-card, .result-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'all 0.6s ease';
-    observer.observe(card);
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.about-card, .level-card, .result-card, .glass-card');
+    animatedElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        observer.observe(element);
+    });
 });
+
+// Parallax effect for hero circles on scroll
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const circles = document.querySelectorAll('.gradient-circle');
+    
+    circles.forEach((circle, index) => {
+        const speed = 0.5 + (index * 0.1);
+        circle.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// Add ripple effect to buttons
+document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Add CSS for ripple effect dynamically
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .cta-button, .submit-button {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s ease-out;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);

@@ -45,7 +45,7 @@
     <link rel="canonical" href="https://technokreaticon.com/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="logo.png">
     <link rel="apple-touch-icon" href="https://i.ibb.co/CsTDhFvV/Meta-tag.jpg">
     
     <!-- Stylesheets -->
@@ -85,6 +85,7 @@
             <div class="logo">
                 <span class="gradient-text">TECHNOKREATICON 3.0</span>
             </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -108,26 +109,71 @@
                 <span class="gradient-text">VIBE CODING</span>
             </h1>
             <p class="hero-subtitle">Transform Ideas into Reality | Code Your Vision</p>
+            <!-- Miro-like mini board with sticky notes -->
+            <div class="board" id="mini-board" aria-hidden="false">
+                <div class="sticky" style="--x:10%; --y:10%; --rot:-5deg;" data-id="s1">Share ideas ✨</div>
+                <div class="sticky" style="--x:60%; --y:20%; --rot:6deg;" data-id="s2">Team up 🤝</div>
+                <div class="sticky" style="--x:30%; --y:55%; --rot:-3deg;" data-id="s3">Build & Deploy 🚀</div>
+            </div>
             <div class="countdown-wrapper">
-                <div id="countdown" class="countdown">
-                    <div class="countdown-item">
-                        <span id="days" class="countdown-value">00</span>
-                        <span class="countdown-label">Days</span>
+                <h3 class="countdown-title">⏰ Event Deadlines</h3>
+                
+                <!-- Level 1 Countdown -->
+                <div class="event-countdown-section">
+                    <h4 class="event-title">📝 Level 1 (Online Submission)</h4>
+                    <p class="event-date">October 14, 2025 - 8:00 PM</p>
+                    <div id="countdown-level1" class="countdown">
+                        <div class="countdown-item">
+                            <span id="days-l1" class="countdown-value">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours-l1" class="countdown-value">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes-l1" class="countdown-value">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds-l1" class="countdown-value">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
                     </div>
-                    <div class="countdown-item">
-                        <span id="hours" class="countdown-value">00</span>
-                        <span class="countdown-label">Hours</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="minutes" class="countdown-value">00</span>
-                        <span class="countdown-label">Minutes</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="seconds" class="countdown-value">00</span>
-                        <span class="countdown-label">Seconds</span>
-                    </div>
+                    <p id="deadline-status-l1" class="deadline-status"></p>
                 </div>
-                <p id="deadline-status" class="deadline-status"></p>
+
+                <!-- Level 2 Countdown -->
+                <div class="event-countdown-section">
+                    <h4 class="event-title">🎯 Level 2 Semi-Final (Online)</h4>
+                    <p class="event-date">October 16, 2025 - 8:00 PM</p>
+                    <div id="countdown-level2" class="countdown">
+                        <div class="countdown-item">
+                            <span id="days-l2" class="countdown-value">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours-l2" class="countdown-value">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes-l2" class="countdown-value">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds-l2" class="countdown-value">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                    <p id="deadline-status-l2" class="deadline-status"></p>
+                </div>
+
+                <!-- Final Venue Info -->
+                <div class="venue-info">
+                    <h4 class="event-title">🏆 Grand Finale (Offline)</h4>
+                    <p class="venue-text">📍 <strong>Venue:</strong> PPG Tech Campus</p>
+                    <p class="venue-note">🎓 Non-qualified teams: Workshop on Vibe Coding</p>
+                </div>
             </div>
             <a href="#submit" class="cta-button">Submit Your Project</a>
         </div>
@@ -160,34 +206,35 @@
                 <div class="level-card">
                     <div class="level-number">01</div>
                     <h3>Level 1: Open Theme</h3>
-                    <p class="level-type">Online Submission</p>
+                    <p class="level-type">📅 Online - Oct 14, 8:00 PM</p>
                     <ul class="level-features">
                         <li>All participants can submit</li>
                         <li>Open theme - Choose any topic</li>
                         <li>Submit PPT and GitHub/Deploy link</li>
-                        <li>Deadline-based submission</li>
+                        <li>Both Ideathon & Vibe Coding</li>
                     </ul>
                 </div>
                 <div class="level-card active">
                     <div class="level-number">02</div>
                     <h3>Level 2: Semi-Final</h3>
-                    <p class="level-type">Offline Round</p>
+                    <p class="level-type">📅 Online - Oct 16, 8:00 PM</p>
                     <ul class="level-features">
-                        <li>Selected participants only</li>
-                        <li>Results published after deadline</li>
-                        <li>In-person presentations</li>
-                        <li>Detailed evaluation</li>
+                        <li>Selected teams only</li>
+                        <li>Results published after Level 1</li>
+                        <li>Online presentations</li>
+                        <li>Top teams advance to finals</li>
                     </ul>
                 </div>
                 <div class="level-card">
                     <div class="level-number">03</div>
-                    <h3>Level 3: Final</h3>
-                    <p class="level-type">Offline Grand Finale</p>
+                    <h3>Level 3: Grand Finale</h3>
+                    <p class="level-type">📍 Offline - PPG Tech Campus</p>
                     <ul class="level-features">
                         <li>Top finalists compete</li>
-                        <li>Live presentations</li>
+                        <li>Live presentations at venue</li>
                         <li>Expert judging panel</li>
                         <li>Prizes & Recognition</li>
+                        <li>Workshop for non-finalists</li>
                     </ul>
                 </div>
             </div>
@@ -231,12 +278,33 @@
     <!-- Results Section -->
     <section id="results" class="results">
         <div class="container">
-            <h2 class="section-title">Semi-Final Qualifiers</h2>
+            <h2 class="section-title">🏆 Level Results</h2>
+            
+            <!-- Event Tabs -->
+            <div class="event-tabs">
+                <button class="tab-button active" data-event="ideathon">💡 Ideathon</button>
+                <button class="tab-button" data-event="vibecoding">💻 Vibe Coding</button>
+            </div>
+
+            <!-- Results Status -->
             <div id="results-status" class="results-status">
                 <!-- This will be populated by JavaScript -->
             </div>
-            <div id="results-grid" class="results-grid">
-                <!-- Results will be loaded from data.json -->
+
+            <!-- Ideathon Results -->
+            <div id="ideathon-results" class="event-results active">
+                <h3 class="event-results-title">Ideathon Qualifiers</h3>
+                <div id="ideathon-grid" class="results-grid">
+                    <!-- Results will be loaded from data.json -->
+                </div>
+            </div>
+
+            <!-- Vibe Coding Results -->
+            <div id="vibecoding-results" class="event-results">
+                <h3 class="event-results-title">Vibe Coding Qualifiers</h3>
+                <div id="vibecoding-grid" class="results-grid">
+                    <!-- Results will be loaded from data.json -->
+                </div>
             </div>
         </div>
     </section>

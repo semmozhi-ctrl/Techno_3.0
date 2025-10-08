@@ -1,12 +1,14 @@
 {
   "resultsPublished": true,
-  "lastUpdated": "2025-10-08T12:00:00Z",
+  "lastUpdated": "2025-10-14T21:00:00Z",
+  "level1Completed": true,
+  "level2Upcoming": true,
   "participants": [
     {
       "projectName": "AI-Powered Healthcare Assistant",
       "category": "Ideathon",
       "teamName": "MediTech Innovators",
-      "members": ["John Doe", "Jane Smith", "Mike Johnson"],
+      "members": ["Arun Kumar (Leader)", "Priya Sharma", "Rajesh Nair"],
       "github": "https://github.com/example/healthcare-ai",
       "deployLink": "https://healthcare-ai-demo.netlify.app"
     },
@@ -14,7 +16,7 @@
       "projectName": "Smart City Traffic Management",
       "category": "Vibe Coding",
       "teamName": "Code Warriors",
-      "members": ["Alice Brown", "Bob Wilson"],
+      "members": ["Sneha Reddy (Leader)", "Vikram Patel"],
       "github": "https://github.com/example/smart-traffic",
       "deployLink": "https://smart-traffic.vercel.app"
     },
@@ -22,7 +24,7 @@
       "projectName": "Eco-Friendly Shopping Platform",
       "category": "Ideathon",
       "teamName": "Green Coders",
-      "members": ["Sarah Davis", "Tom Anderson", "Emily White"],
+      "members": ["Kavya Menon (Leader)", "Arjun Das", "Meera Pillai"],
       "github": "https://github.com/example/eco-shop",
       "deployLink": ""
     },
@@ -30,7 +32,7 @@
       "projectName": "Real-Time Collaboration Tool",
       "category": "Vibe Coding",
       "teamName": "Sync Squad",
-      "members": ["Chris Martin", "Lisa Garcia"],
+      "members": ["Rahul Krishnan (Leader)", "Divya Iyer"],
       "github": "https://github.com/example/collab-tool",
       "deployLink": "https://collab-tool.herokuapp.com"
     },
@@ -38,7 +40,7 @@
       "projectName": "Educational AR Platform",
       "category": "Ideathon",
       "teamName": "Future Learning",
-      "members": ["David Lee", "Emma Taylor", "Ryan Clark"],
+      "members": ["Ananya Nambiar (Leader)", "Karthik Menon", "Deepak Kumar"],
       "github": "https://github.com/example/ar-education",
       "deployLink": "https://ar-edu.netlify.app"
     },
@@ -46,9 +48,25 @@
       "projectName": "Blockchain Voting System",
       "category": "Vibe Coding",
       "teamName": "Chain Creators",
-      "members": ["Oliver Moore", "Sophia Martinez"],
+      "members": ["Sanjay Varma (Leader)", "Lakshmi Nair"],
       "github": "https://github.com/example/blockchain-vote",
       "deployLink": ""
+    },
+    {
+      "projectName": "Student Mental Health Platform",
+      "category": "Ideathon",
+      "teamName": "Mind Matters",
+      "members": ["Nithya Suresh (Leader)", "Ajay Krishnan", "Riya Thomas"],
+      "github": "https://github.com/example/mental-health",
+      "deployLink": "https://mindmatters-app.netlify.app"
+    },
+    {
+      "projectName": "E-Commerce Analytics Dashboard",
+      "category": "Vibe Coding",
+      "teamName": "Data Wizards",
+      "members": ["Vishal Ramesh (Leader)", "Pooja Rajendran"],
+      "github": "https://github.com/example/analytics-dash",
+      "deployLink": "https://ecommerce-analytics.vercel.app"
     }
   ]
 }
