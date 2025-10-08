@@ -1,0 +1,54 @@
+{
+  "resultsPublished": true,
+  "lastUpdated": "2025-10-08T12:00:00Z",
+  "participants": [
+    {
+      "projectName": "AI-Powered Healthcare Assistant",
+      "category": "Ideathon",
+      "teamName": "MediTech Innovators",
+      "members": ["John Doe", "Jane Smith", "Mike Johnson"],
+      "github": "https://github.com/example/healthcare-ai",
+      "deployLink": "https://healthcare-ai-demo.netlify.app"
+    },
+    {
+      "projectName": "Smart City Traffic Management",
+      "category": "Vibe Coding",
+      "teamName": "Code Warriors",
+      "members": ["Alice Brown", "Bob Wilson"],
+      "github": "https://github.com/example/smart-traffic",
+      "deployLink": "https://smart-traffic.vercel.app"
+    },
+    {
+      "projectName": "Eco-Friendly Shopping Platform",
+      "category": "Ideathon",
+      "teamName": "Green Coders",
+      "members": ["Sarah Davis", "Tom Anderson", "Emily White"],
+      "github": "https://github.com/example/eco-shop",
+      "deployLink": ""
+    },
+    {
+      "projectName": "Real-Time Collaboration Tool",
+      "category": "Vibe Coding",
+      "teamName": "Sync Squad",
+      "members": ["Chris Martin", "Lisa Garcia"],
+      "github": "https://github.com/example/collab-tool",
+      "deployLink": "https://collab-tool.herokuapp.com"
+    },
+    {
+      "projectName": "Educational AR Platform",
+      "category": "Ideathon",
+      "teamName": "Future Learning",
+      "members": ["David Lee", "Emma Taylor", "Ryan Clark"],
+      "github": "https://github.com/example/ar-education",
+      "deployLink": "https://ar-edu.netlify.app"
+    },
+    {
+      "projectName": "Blockchain Voting System",
+      "category": "Vibe Coding",
+      "teamName": "Chain Creators",
+      "members": ["Oliver Moore", "Sophia Martinez"],
+      "github": "https://github.com/example/blockchain-vote",
+      "deployLink": ""
+    }
+  ]
+}
