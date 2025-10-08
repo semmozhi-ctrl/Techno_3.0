@@ -85,7 +85,11 @@
             <div class="logo">
                 <span class="gradient-text">TECHNOKREATICON 3.0</span>
             </div>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -278,22 +282,34 @@
     <!-- Results Section -->
     <section id="results" class="results">
         <div class="container">
-            <h2 class="section-title">🏆 Level Results</h2>
+            <h2 class="section-title gradient-text">🏆 Competition Results</h2>
+            <p class="section-subtitle">View the qualified teams advancing to the next level</p>
             
             <!-- Event Tabs -->
             <div class="event-tabs">
-                <button class="tab-button active" data-event="ideathon">💡 Ideathon</button>
-                <button class="tab-button" data-event="vibecoding">💻 Vibe Coding</button>
+                <button class="tab-button active" data-event="ideathon">
+                    <span class="tab-icon">💡</span>
+                    <span class="tab-text">Ideathon</span>
+                </button>
+                <button class="tab-button" data-event="vibecoding">
+                    <span class="tab-icon">💻</span>
+                    <span class="tab-text">Vibe Coding</span>
+                </button>
             </div>
 
-            <!-- Results Status -->
+            <!-- Results Status Banner -->
             <div id="results-status" class="results-status">
                 <!-- This will be populated by JavaScript -->
             </div>
 
             <!-- Ideathon Results -->
             <div id="ideathon-results" class="event-results active">
-                <h3 class="event-results-title">Ideathon Qualifiers</h3>
+                <div class="results-header">
+                    <h3 class="event-results-title">Ideathon Qualifiers</h3>
+                    <div class="results-stats" id="ideathon-stats">
+                        <span class="stat-badge">Teams: <strong>0</strong></span>
+                    </div>
+                </div>
                 <div id="ideathon-grid" class="results-grid">
                     <!-- Results will be loaded from data.json -->
                 </div>
@@ -301,7 +317,12 @@
 
             <!-- Vibe Coding Results -->
             <div id="vibecoding-results" class="event-results">
-                <h3 class="event-results-title">Vibe Coding Qualifiers</h3>
+                <div class="results-header">
+                    <h3 class="event-results-title">Vibe Coding Qualifiers</h3>
+                    <div class="results-stats" id="vibecoding-stats">
+                        <span class="stat-badge">Teams: <strong>0</strong></span>
+                    </div>
+                </div>
                 <div id="vibecoding-grid" class="results-grid">
                     <!-- Results will be loaded from data.json -->
                 </div>

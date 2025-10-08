@@ -1,42 +1,24 @@
 // Configuration - Set your event deadlines here
-const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM
+const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 7, 8:00 PM
 const DEADLINE_LEVEL2 = new Date('2025-10-16T20:00:00').getTime(); // Oct 16, 8:00 PM
 
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navbar = document.querySelector('.navbar');
 
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const isExpanded = navLinks.classList.contains('active');
-        navToggle.setAttribute('aria-expanded', isExpanded);
-        navToggle.textContent = isExpanded ? '✕' : '☰';
-        
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = isExpanded ? 'hidden' : '';
-    });
-
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.textContent = '☰';
-            document.body.style.overflow = '';
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.textContent = '☰';
-            document.body.style.overflow = '';
-        }
-    });
-}
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    navbar.classList.toggle('menu-open');
+    document.body.classList.toggle('menu-open');
+    
+    if (navLinks.classList.contains('active')) {
+        navbar.classList.add('menu-open');
+    } else {
+        navbar.classList.remove('menu-open');
+    }
+});
 
 // Draggable Sticky Notes (Miro-style)
 class DraggableSticky {
@@ -117,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Countdown Timer
+let resultsLoaded = false; // Flag to prevent multiple loads
+
 function updateCountdown() {
     const now = new Date().getTime();
     
@@ -140,8 +124,9 @@ function updateLevelCountdown(deadline, suffix, eventName) {
         document.getElementById(`deadline-status-${suffix}`).innerHTML = 
             '<span style="color: #f5576c; font-weight: 600;">⏰ Deadline Passed!</span>';
         
-        // Load results after Level 1 deadline
-        if (suffix === 'l1') {
+        // Load results after Level 1 deadline (only once)
+        if (suffix === 'l1' && !resultsLoaded) {
+            resultsLoaded = true;
             loadResults();
         }
         return;
@@ -212,6 +197,18 @@ async function loadResults() {
             const ideathonParticipants = data.participants.filter(p => p.category === 'Ideathon');
             const vibeCodingParticipants = data.participants.filter(p => p.category === 'Vibe Coding');
             
+            // Update stats badges
+            const ideathonStats = document.querySelector('#ideathon-stats');
+            const vibeCodingStats = document.querySelector('#vibecoding-stats');
+            
+            if (ideathonStats) {
+                ideathonStats.innerHTML = `<span class="stat-badge">Teams: <strong>${ideathonParticipants.length}</strong></span>`;
+            }
+            
+            if (vibeCodingStats) {
+                vibeCodingStats.innerHTML = `<span class="stat-badge">Teams: <strong>${vibeCodingParticipants.length}</strong></span>`;
+            }
+            
             // Render Ideathon results
             if (ideathonParticipants.length > 0) {
                 ideathonGrid.innerHTML = ideathonParticipants.map((participant, index) => 
@@ -258,17 +255,18 @@ async function loadResults() {
 
 // Create result card HTML
 function createResultCard(participant, rank) {
-    const leaderName = participant.members && participant.members.length > 0 ? participant.members[0] : 'N/A';
-    
+    // Use leader field if present; otherwise fallback to 'N/A'
+    const leaderName = participant.leader || 'N/A';
+
+    // Enhanced card with better visual hierarchy and effects
     return `
         <div class="result-card qualified" data-team="${participant.teamName}">
-            <div class="result-rank">Rank #${rank}</div>
+            <div class="result-rank">🏆 Rank #${rank}</div>
             <h3>${participant.teamName}</h3>
-            <p class="result-category">Leader: <strong>${leaderName}</strong></p>
-            <div class="result-team"><strong>All Members:</strong> ${participant.members.join(', ')}</div>
-            <div class="result-team"><strong>Project:</strong> ${participant.projectName}</div>
-            ${participant.github ? `<div class="result-team"><strong>GitHub:</strong> <a href="${participant.github}" target="_blank" style="color: #667eea;">View Code</a></div>` : ''}
-            ${participant.deployLink ? `<div class="result-team"><strong>Demo:</strong> <a href="${participant.deployLink}" target="_blank" style="color: #667eea;">View Live</a></div>` : ''}
+            <p class="result-category">
+                <span style="color: var(--text-secondary);">Leader:</span> 
+                <strong>${leaderName}</strong>
+            </p>
             <div class="next-level-badge">✨ Qualified for Level 2! ✨</div>
         </div>
     `;
@@ -278,7 +276,16 @@ function createResultCard(participant, rank) {
 function addResultCardClickHandlers() {
     const resultCards = document.querySelectorAll('.result-card');
     
-    resultCards.forEach(card => {
+    resultCards.forEach((card, index) => {
+        // Add staggered entrance animation
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px) scale(0.95)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+        }, index * 100);
+        
         card.addEventListener('click', function(e) {
             // Don't expand when clicking links
             if (e.target.tagName === 'A') return;
@@ -294,6 +301,25 @@ function addResultCardClickHandlers() {
                 this.classList.add('expanded');
                 createConfetti(this);
             }
+        });
+
+        // Add hover effect with 3D tilt
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.03)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
         });
     });
 }
@@ -360,11 +386,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(15, 15, 35, 0.8)';
+        navbar.classList.remove('scrolled');
     }
 });
+
+// Active link indication
+function setActiveLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', setActiveLink);
+document.addEventListener('DOMContentLoaded', setActiveLink);
 
 // Add pulse animation for urgent countdown
 const style = document.createElement('style');
@@ -382,9 +434,10 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     
-    // Load results if Level 1 deadline has passed
+    // Load results if Level 1 deadline has passed (only once on page load)
     const now = new Date().getTime();
-    if (DEADLINE_LEVEL1 - now < 0) {
+    if (DEADLINE_LEVEL1 - now < 0 && !resultsLoaded) {
+        resultsLoaded = true;
         loadResults();
     }
 });
