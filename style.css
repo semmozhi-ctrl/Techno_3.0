@@ -793,13 +793,7 @@ section {
 }
 
 .result-card.qualified {
-    animation: celebrate 0.8s ease;
-}
-
-@keyframes celebrate {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.05) rotate(-2deg); }
-    75% { transform: scale(1.05) rotate(2deg); }
+    /* Removed animation for stability */
 }
 
 .result-rank {

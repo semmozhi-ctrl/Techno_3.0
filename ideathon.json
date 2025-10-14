@@ -1,0 +1,31 @@
+{
+  "participants": [
+    {
+      "teamName": "Tech Innovators",
+      "members": ["Alice Johnson", "Bob Smith", "Charlie Brown"],
+      "projectName": "Smart Agriculture Solution",
+      "category": "Ideathon",
+      "score": 95,
+      "github": "https://github.com/techinnovators/smart-agri",
+      "deployLink": "https://smart-agri-demo.herokuapp.com"
+    },
+    {
+      "teamName": "Code Wizards",
+      "members": ["Diana Prince", "Eve Wilson"],
+      "projectName": "AI-Powered Education Platform",
+      "category": "Ideathon",
+      "score": 92,
+      "github": "https://github.com/codewizards/ai-edu",
+      "deployLink": "https://ai-edu-platform.vercel.app"
+    },
+    {
+      "teamName": "Future Builders",
+      "members": ["Frank Miller", "Grace Lee", "Henry Davis"],
+      "projectName": "Sustainable Energy Monitor",
+      "category": "Ideathon",
+      "score": 88,
+      "github": "https://github.com/futurebuilders/energy-monitor",
+      "deployLink": null
+    }
+  ]
+}

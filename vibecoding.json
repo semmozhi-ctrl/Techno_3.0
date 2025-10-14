@@ -1,0 +1,31 @@
+{
+  "participants": [
+    {
+      "teamName": "Byte Busters",
+      "members": ["Ivy Chen", "Jack Taylor"],
+      "projectName": "Real-time Chat Application",
+      "category": "Vibe Coding",
+      "score": 97,
+      "github": "https://github.com/bytebusters/chat-app",
+      "deployLink": "https://bytebusters-chat.netlify.app"
+    },
+    {
+      "teamName": "Pixel Pioneers",
+      "members": ["Kevin Liu", "Lily Wang", "Mike Johnson"],
+      "projectName": "Interactive Data Visualization Tool",
+      "category": "Vibe Coding",
+      "score": 94,
+      "github": "https://github.com/pixelpioneers/data-viz",
+      "deployLink": "https://pixelpioneers-viz.streamlit.app"
+    },
+    {
+      "teamName": "Logic Lords",
+      "members": ["Nina Rodriguez", "Oscar Kim"],
+      "projectName": "Task Management System",
+      "category": "Vibe Coding",
+      "score": 89,
+      "github": "https://github.com/logiclords/task-manager",
+      "deployLink": "https://logic-lords-tasks.herokuapp.com"
+    }
+  ]
+}

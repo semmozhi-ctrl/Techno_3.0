@@ -1,6 +1,6 @@
 // Configuration - Set your event deadlines here
-const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM
-const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 8:00 PM
+const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM (Round 1)
+const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
 
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
@@ -172,15 +172,15 @@ function updateLevelCountdown(deadline, suffix, eventName) {
     }
 }
 
-// Load Results from JSON
+// Load Results from separate JSON files
 async function loadResults() {
     const ideathonGrid = document.getElementById('ideathon-grid');
     const vibeCodingGrid = document.getElementById('vibecoding-grid');
     const resultsStatus = document.getElementById('results-status');
-    
+
     const now = new Date().getTime();
     const level1Passed = DEADLINE_LEVEL1 - now < 0;
-    
+
     // Check if Level 1 deadline has passed
     if (!level1Passed) {
         resultsStatus.innerHTML = `
@@ -193,12 +193,21 @@ async function loadResults() {
         vibeCodingGrid.innerHTML = '';
         return;
     }
-    
+
     try {
-        const response = await fetch('data.json');
-        const data = await response.json();
-        
-        if (data.resultsPublished) {
+        // Load Ideathon results
+        const ideathonResponse = await fetch('ideathon.json');
+        const ideathonData = await ideathonResponse.json();
+
+        // Load Vibe Coding results
+        const vibeCodingResponse = await fetch('vibecoding.json');
+        const vibeCodingData = await vibeCodingResponse.json();
+
+        // Check if results are available (assuming if participants array exists and has items)
+        const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;
+        const vibeCodingAvailable = vibeCodingData.participants && vibeCodingData.participants.length > 0;
+
+        if (ideathonAvailable || vibeCodingAvailable) {
             resultsStatus.innerHTML = `
                 <p style="color: #4facfe; font-weight: 600;">
                     🎉 Congratulations to all Level 2 Qualifiers! 🎉<br>
@@ -207,32 +216,28 @@ async function loadResults() {
                     </span>
                 </p>
             `;
-            
-            // Separate participants by category
-            const ideathonParticipants = data.participants.filter(p => p.category === 'Ideathon');
-            const vibeCodingParticipants = data.participants.filter(p => p.category === 'Vibe Coding');
-            
-            // Render Ideathon results
-            if (ideathonParticipants.length > 0) {
-                ideathonGrid.innerHTML = ideathonParticipants.map((participant, index) => 
+
+            // Render Ideathon results (already sorted by score in JSON)
+            if (ideathonAvailable) {
+                ideathonGrid.innerHTML = ideathonData.participants.map((participant, index) =>
                     createResultCard(participant, index + 1)
                 ).join('');
             } else {
                 ideathonGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
-            
-            // Render Vibe Coding results
-            if (vibeCodingParticipants.length > 0) {
-                vibeCodingGrid.innerHTML = vibeCodingParticipants.map((participant, index) => 
+
+            // Render Vibe Coding results (already sorted by score in JSON)
+            if (vibeCodingAvailable) {
+                vibeCodingGrid.innerHTML = vibeCodingData.participants.map((participant, index) =>
                     createResultCard(participant, index + 1)
                 ).join('');
             } else {
                 vibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
-            
+
             // Add click handlers to all result cards
             addResultCardClickHandlers();
-            
+
         } else {
             resultsStatus.innerHTML = `
                 <p style="color: var(--text-secondary);">
@@ -405,14 +410,21 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all animated elements
+// Observe all animated elements (excluding result cards for stability)
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.about-card, .level-card, .result-card, .glass-card');
+    const animatedElements = document.querySelectorAll('.about-card, .level-card, .glass-card');
     animatedElements.forEach((element, index) => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
         element.style.transition = `all 0.6s ease ${index * 0.1}s`;
         observer.observe(element);
+    });
+
+    // Make result cards stable (no animation)
+    const resultCards = document.querySelectorAll('.result-card');
+    resultCards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
     });
 });
 
