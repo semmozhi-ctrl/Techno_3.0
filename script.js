@@ -200,6 +200,35 @@ async function loadResults() {
     }
 
     // Update counts immediately after attempting to fetch files so the UI reflects data asap
+    // Fallback: try to read inline JSON blocks if fetch didn't return participants
+    try {
+        if ((!ideathonData.participants || ideathonData.participants.length === 0) && document.getElementById('ideathon-data')) {
+            const raw = document.getElementById('ideathon-data').textContent.trim();
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && Array.isArray(parsed.participants) && parsed.participants.length > 0) {
+                    ideathonData = parsed;
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Failed to parse inline ideathon data', e);
+    }
+
+    try {
+        if ((!vibeCodingData.participants || vibeCodingData.participants.length === 0) && document.getElementById('vibecoding-data')) {
+            const raw = document.getElementById('vibecoding-data').textContent.trim();
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && Array.isArray(parsed.participants) && parsed.participants.length > 0) {
+                    vibeCodingData = parsed;
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Failed to parse inline vibecoding data', e);
+    }
+
     updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
 
         // Check if results are available (assuming if participants array exists and has items)
