@@ -239,10 +239,7 @@ async function loadResults() {
         if (ideathonAvailable || vibeCodingAvailable) {
             resultsStatus.innerHTML = `
                 <p style="color: #4facfe; font-weight: 600;">
-                    🎉 Congratulations to all Level 2 Qualifiers! 🎉<br>
-                    <span style="color: var(--text-secondary); font-size: 1rem;">
-                        Click on any team card to see full details and celebrate their qualification!
-                    </span>
+                    🎉 Congratulations to all Level 2 Qualifiers! 🎉
                 </p>
             `;
 
@@ -310,43 +307,19 @@ async function loadResults() {
         if (vibeCountElem) vibeCountElem.textContent = String(vibeList.length || 0);
     }
 
-// Create result card HTML
+// Create result card HTML - simplified to show only team name
 function createResultCard(participant, rank) {
-    // Render card without rank or explicit leader line (shortlisted UI)
     return `
         <div class="result-card qualified" data-team="${participant.teamName}">
             <h3>${participant.teamName}</h3>
-            <div class="result-team"><strong>All Members:</strong> ${participant.members.join(', ')}</div>
-            <div class="result-team"><strong>Project:</strong> ${participant.projectName}</div>
-            ${participant.github ? `<div class="result-team"><strong>GitHub:</strong> <a href="${participant.github}" target="_blank" style="color: #667eea;">View Code</a></div>` : ''}
-            ${participant.deployLink ? `<div class="result-team"><strong>Demo:</strong> <a href="${participant.deployLink}" target="_blank" style="color: #667eea;">View Live</a></div>` : ''}
             <div class="next-level-badge">✨ Qualified for Level 2! ✨</div>
         </div>
     `;
 }
 
-// Add click handlers to result cards for expansion
+// Add click handlers to result cards (simplified - no expansion needed)
 function addResultCardClickHandlers() {
-    const resultCards = document.querySelectorAll('.result-card');
-    
-    resultCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Don't expand when clicking links
-            if (e.target.tagName === 'A') return;
-            
-            // Toggle expanded state
-            const wasExpanded = this.classList.contains('expanded');
-            
-            // Close all other cards
-            resultCards.forEach(c => c.classList.remove('expanded'));
-            
-            // Toggle this card
-            if (!wasExpanded) {
-                this.classList.add('expanded');
-                createConfetti(this);
-            }
-        });
-    });
+    // Cards no longer expand, just show team name with badge
 }
 
 // Create confetti effect on card click

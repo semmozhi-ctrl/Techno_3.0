@@ -807,7 +807,7 @@ section {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    text-align: center;
 }
 
 .result-card::before {
@@ -826,75 +826,21 @@ section {
     border-color: rgba(102, 126, 234, 0.5);
 }
 
-.result-card.expanded {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-    border: 2px solid #667eea;
-}
-
-.result-card.qualified {
-    /* Removed animation for stability */
-}
-
-.result-rank {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--primary-gradient);
-    border-radius: 20px;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
 .result-card h3 {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-}
-
-.result-category {
-    color: var(--text-secondary);
-    font-style: italic;
     margin-bottom: 1rem;
-}
-
-.result-team {
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-    display: none;
-}
-
-.result-card.expanded .result-team {
-    display: block;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        max-height: 0;
-    }
-    to {
-        opacity: 1;
-        max-height: 100px;
-    }
-}
-
-.result-team strong {
-    color: var(--text-primary);
-}
-
-.result-link {
-    color: #667eea;
-    text-decoration: none;
+    text-align: center;
 }
 
 .next-level-badge {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 1.5rem;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
     background: linear-gradient(135deg, #06ffa5, #00d4aa);
     color: #0f0f23;
     font-weight: 700;
     border-radius: 50px;
+    font-size: 0.9rem;
     animation: pulse 2s infinite, shimmer 3s infinite;
 }
 
