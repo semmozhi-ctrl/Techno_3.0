@@ -7,13 +7,6 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (navToggle) {
-    const closeNav = () => {
-        navLinks.classList.remove('active');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.textContent = '☰';
-        document.body.style.overflow = '';
-    };
-
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         const isExpanded = navLinks.classList.contains('active');
@@ -33,7 +26,6 @@ if (navToggle) {
             document.body.style.overflow = '';
         });
     });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
@@ -42,8 +34,6 @@ if (navToggle) {
             navToggle.setAttribute('aria-expanded', 'false');
             navToggle.textContent = '☰';
             document.body.style.overflow = '';
-        if (navLinks.classList.contains('active') && !navToggle.contains(e.target) && !navLinks.contains(e.target)) {
-            closeNav();
         }
     });
 }
