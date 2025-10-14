@@ -89,8 +89,8 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#themes">Themes</a></li>
                 <li><a href="#levels">Levels</a></li>
-                <li><a href="#submit">Submit</a></li>
                 <li><a href="#results">Results</a></li>
             </ul>
         </div>
@@ -110,42 +110,22 @@
             </h1>
             <p class="hero-subtitle">Transform Ideas into Reality | Code Your Vision</p>
             <!-- Miro-like mini board with sticky notes -->
-            <div class="board" id="mini-board" aria-hidden="false">
+            <!-- <div class="board" id="mini-board" aria-hidden="false">
                 <div class="sticky" style="--x:10%; --y:10%; --rot:-5deg;" data-id="s1">Share ideas ✨</div>
                 <div class="sticky" style="--x:60%; --y:20%; --rot:6deg;" data-id="s2">Team up 🤝</div>
                 <div class="sticky" style="--x:30%; --y:55%; --rot:-3deg;" data-id="s3">Build & Deploy 🚀</div>
-            </div>
+            </div> -->
             <div class="countdown-wrapper">
-                <h3 class="countdown-title">⏰ Event Deadlines</h3>
-                
-                <!-- Level 1 Countdown -->
-                <div class="event-countdown-section">
-                    <h4 class="event-title">📝 Level 1 (Online Submission)</h4>
-                    <p class="event-date">October 14, 2025 - 10:10 PM</p>
-                    <div id="countdown-level1" class="countdown">
-                        <div class="countdown-item">
-                            <span id="days-l1" class="countdown-value">00</span>
-                            <span class="countdown-label">Days</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="hours-l1" class="countdown-value">00</span>
-                            <span class="countdown-label">Hours</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="minutes-l1" class="countdown-value">00</span>
-                            <span class="countdown-label">Minutes</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span id="seconds-l1" class="countdown-value">00</span>
-                            <span class="countdown-label">Seconds</span>
-                        </div>
-                    </div>
-                    <p id="deadline-status-l1" class="deadline-status"></p>
+                <!-- Level 1 Complete Banner -->
+                <div class="level-complete-banner">
+                    <h3 class="complete-title">✅ Level 1 Completed!</h3>
+                    <p class="complete-message">Thank you to all participants! Check the <a href="#results" style="color: #06ffa5; font-weight: 700; text-decoration: underline;">Results Section</a> below to see qualified teams.</p>
                 </div>
 
-                <!-- Level 2 Countdown -->
-                <div class="event-countdown-section">
-                    <h4 class="event-title">🎯 Level 2 Semi-Final (Online)</h4>
+                <!-- Level 2 Main Countdown -->
+                <h3 class="countdown-title">⏰ Level 2 Semi-Final Deadline</h3>
+                <div class="event-countdown-section main-countdown">
+                    <h4 class="event-title">🎯 Level 2 Semi-Final (Shortlisted Teams Only)</h4>
                     <p class="event-date">October 16, 2025 - 9:00 PM</p>
                     <div id="countdown-level2" class="countdown">
                         <div class="countdown-item">
@@ -175,7 +155,7 @@
                     <p class="venue-note">🎓 Non-qualified teams: Workshop on Vibe Coding</p>
                 </div>
             </div>
-            <a href="#submit" class="cta-button">Submit Your Project</a>
+            <a href="#themes" class="cta-button">View Problem Statements</a>
         </div>
     </section>
 
@@ -198,20 +178,275 @@
         </div>
     </section>
 
+    <!-- Problem Statements / Themes -->
+    <section id="themes" class="themes">
+        <div class="container">
+            <h2 class="section-title">🎯 Level 2 Problem Statements</h2>
+            <p class="themes-intro">Shortlisted teams must work on the following themes for Level 2 Semi-Final</p>
+            
+            <!-- Vibe Coding Themes -->
+            <div class="theme-section">
+                <h3 class="theme-header">💻 Vibe Coding Themes (Web & Development Focus)</h3>
+                <p class="theme-description">These themes are designed to be accessible (Intermediate Level) and spur fast, creative development. <strong>Teams must select ONE theme</strong> for their project.</p>
+                
+                <div class="themes-grid">
+                    <div class="theme-card">
+                        <div class="theme-number">1</div>
+                        <h4>🔗 Connect</h4>
+                        <p>Build something that involves <strong>real-time interaction</strong> or linking different data sources (e.g., live chat, collaborative notes, or a system that pulls data from multiple APIs).</p>
+                    </div>
+                    
+                    <div class="theme-card">
+                        <div class="theme-number">2</div>
+                        <h4>🗺️ Trace</h4>
+                        <p>Build a project focused on <strong>tracking, mapping, or showing journeys/history</strong> (e.g., visualizing a path, showing historical data over time, or creating a digital logbook).</p>
+                    </div>
+                    
+                    <div class="theme-card">
+                        <div class="theme-number">3</div>
+                        <h4>🔑 Access</h4>
+                        <p>Build a project that deals with <strong>user authentication, security, or personalized content</strong> (e.g., a simple login with different user roles, or a tool that encrypts/protects data).</p>
+                    </div>
+                    
+                    <div class="theme-card">
+                        <div class="theme-number">4</div>
+                        <h4>🦎 Adapt</h4>
+                        <p>Build a website or app that <strong>changes its look, layout, or features dramatically</strong> based on the user's environment (e.g., screen size, dark/light mode, or a mock user profile).</p>
+                    </div>
+                    
+                    <div class="theme-card">
+                        <div class="theme-number">5</div>
+                        <h4>🧠 Sense</h4>
+                        <p>Build a web interface that takes <strong>simple input data</strong> (from a form, a mock sensor, or an API) and presents it in a <strong>beautiful, intelligent, or useful way</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="requirements-box">
+                    <h4>📋 Mandatory Submission Requirements:</h4>
+                    <p class="requirement-intro">Teams must submit a live, working prototype centered on their chosen theme (Connect, Trace, Access, Adapt, or Sense).</p>
+                    <ul>
+                        <li><strong>1. Live Functional Prototype (Web URL):</strong> The primary output must be a publicly accessible, working website or web application. The core feature related to the theme must be functional (the Minimum Viable Product).</li>
+                        <li><strong>2. High-Quality UI/UX Design:</strong> The interface must be visually appealing, intuitive to use, and showcase a deliberate, unique "vibe" that enhances the project's concept.</li>
+                        <li><strong>3. Intermediate Technical Integration:</strong> The project must utilize at least one core intermediate web technology, such as consuming a <strong>live API</strong>, implementing simple <strong>client-side authentication/authorization</strong>, or using <strong>WebSockets</strong> for real-time updates.</li>
+                        <li><strong>4. Dynamic Data/Logic Visualization:</strong> The application must prove dynamic behavior by processing or displaying data (either from an API or a mock data set) via a <strong>graph, chart, or interactive visualization</strong>.</li>
+                        <li><strong>5. Codebase and Pitch Submission:</strong> Submission must include the complete, organized <strong>source code repository</strong> (e.g., GitHub link) and a brief (1-3 minute) <strong>pitch video or presentation deck</strong> explaining the solution and innovation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ideathon Themes -->
+            <div class="theme-section">
+                <h3 class="theme-header">💡 Ideathon Problem Statements (6 Domains)</h3>
+                <p class="theme-description">Choose <strong>ONE problem statement</strong> from any domain and present your innovative solution with a focus on <strong>ideation, PPT presentation, and innovation</strong>.</p>
+                
+                <!-- Agriculture Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">🌾 Agriculture</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AE-01</div>
+                            <h5>Low-Cost Soil Health and Water Quality Monitor</h5>
+                            <p>Design a simple, portable kit (using basic sensors like pH, temperature, moisture) and a mobile app interface to monitor critical soil and water parameters for small farms, providing actionable, color-coded alerts.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AE-02</div>
+                            <h5>"Farm-Equip Share" Platform Design</h5>
+                            <p>Develop a digital platform/app interface (focus on UI/UX) to connect smallholder farmers, allowing them to easily rent or share expensive agricultural equipment (tractors, harvesters) based on location and time.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AE-03</div>
+                            <h5>Sustainable Waste-to-Compost System</h5>
+                            <p>Design a conceptual, small-scale mechanical system or process flow for quickly and efficiently converting agricultural residue (biomass) into high-quality compost or biochar, suitable for village-level deployment.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AE-04</div>
+                            <h5>Crop Disease Symptom Image Classifier</h5>
+                            <p>Build a basic image classification model (or a proof-of-concept data collection strategy) to identify common crop disease symptoms on leaves, providing instant feedback to a farmer via a simple web or mobile interface.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI/DS & ML Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">🤖 AI/DS & ML</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AI/ML-01</div>
+                            <h5>University Resource Demand Prediction</h5>
+                            <p>Develop a data analysis and prediction model (using historical usage data) to forecast peak demand for a specific university resource (e.g., library seats, lab equipment, cafeteria rush hour) and visualize the forecast on a dashboard.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AI/ML-02</div>
+                            <h5>Simplified Natural Language Query System for Local Data</h5>
+                            <p>Create an application that allows users to ask simple, natural language questions (e.g., "Which student has the highest attendance?") and get answers from a small, structured local dataset (e.g., student/college data).</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AI/ML-03</div>
+                            <h5>AI-Powered Resume/Skill Matcher</h5>
+                            <p>Build a basic system that takes a Job Description (JD) and a student's resume/CV and provides a numeric compatibility score and highlights the missing keywords/skills using basic text processing and data matching techniques.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">AI/ML-04</div>
+                            <h5>Personalized "Micro-Habit" Tracker and Suggestion Tool</h5>
+                            <p>Design an app that tracks a few daily habits (e.g., study time, water intake) and uses simple data science techniques to provide personalized, timely suggestions to improve the user's routine based on their own historical patterns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Medical Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">🏥 Bio Medical</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">BME-01</div>
+                            <h5>Posture Monitoring and Alert System</h5>
+                            <p>Design a simple wearable or desk-mounted device (using an accelerometer/ultrasonic sensor and a microcontroller like Arduino) that detects poor sitting posture and provides a timely audio or haptic alert to the user.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">BME-02</div>
+                            <h5>"Know Your Medicine" Information Kiosk Prototype</h5>
+                            <p>Develop an interactive digital kiosk (web interface prototype) where users can quickly search for a medicine name (or scan a mock code) and view simplified, easy-to-understand information about its uses, dosage, and common side effects.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">BME-03</div>
+                            <h5>Hand-Gesture-to-Text Conversion Tool</h5>
+                            <p>Create a basic system (using a camera or glove-based sensors) that can recognize a small set of simple hand gestures (e.g., 'Hello', 'Yes', 'No') and convert them into displayed text, aiding in basic communication for non-verbal individuals.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">BME-04</div>
+                            <h5>Low-Cost Pulse Oximeter & Data Logger</h5>
+                            <p>Build a functional prototype for a basic pulse oximeter using readily available components (LEDs, photodetectors, microcontroller) that can measure SpO₂ and heart rate and log the data locally or to a simple digital display.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software and Development Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">💻 Software and Development</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">CS/IT-01</div>
+                            <h5>University Community Lost & Found Platform</h5>
+                            <p>Build a simple, centralized web or mobile platform (focus on database and UI/UX) where students can securely post about items they have lost or found on campus, with features for image upload and simple search filters.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">CS/IT-02</div>
+                            <h5>Personalized File Encryption Utility</h5>
+                            <p>Develop a small desktop utility or web tool that allows a user to encrypt and decrypt sensitive files using a basic, secure algorithm (e.g., AES-128 or a simple substitution cipher) to understand foundational data security principles.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">CS/IT-03</div>
+                            <h5>Efficient College Cafeteria E-Token System</h5>
+                            <p>Create an application/system prototype for a digital token queue at the cafeteria. Users can place orders, receive an estimated time/token number, and the kitchen staff manages the queue flow on a separate interface.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">CS/IT-04</div>
+                            <h5>Interactive Campus Map with Service Locator</h5>
+                            <p>Develop a basic, interactive digital map of the college campus where users can quickly locate key services (labs, restrooms, specific faculty offices) and view real-time status (e.g., whether a computer lab is currently open/busy).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronics and Communication Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">� Electronics and Communication</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ECE-01</div>
+                            <h5>Smart Lighting System with Occupancy Detection</h5>
+                            <p>Design and prototype an automated lighting system using a microcontroller and a basic motion sensor (PIR) to detect if a room is occupied. The system should switch lights ON/OFF and conserve energy.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ECE-02</div>
+                            <h5>Voice-Controlled Home Appliance Switch</h5>
+                            <p>Build a basic system that uses an accessible voice recognition module (or mobile app input) to control simple home appliances (like a lamp or fan) through relay switching, focusing on wireless communication (Bluetooth/Wi-Fi).</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ECE-03</div>
+                            <h5>Simple Digital Communication Channel Simulator</h5>
+                            <p>Develop a software application (using Python/MATLAB/etc.) to simulate a basic digital communication system (e.g., QPSK, FSK) showing the signal at the transmitter, through a noisy channel, and at the receiver, visualizing the effect of noise.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ECE-04</div>
+                            <h5>Water Tank Level Monitoring and Alert System</h5>
+                            <p>Create an IoT-based system (using an ultrasonic or float sensor) to monitor the water level in a tank and send a simple notification (e.g., to a mobile phone or a local display) when the tank is near empty or full.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mechanical Domain -->
+                <div class="domain-section">
+                    <h4 class="domain-title">⚙️ Mechanical</h4>
+                    <div class="themes-grid">
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ME-01</div>
+                            <h5>Ergonomic Design for College Bag Support</h5>
+                            <p>Design and create a CAD model or a simple physical prototype of an ergonomic attachment or frame that can be incorporated into a standard college backpack to better distribute weight and reduce spinal strain.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ME-02</div>
+                            <h5>Pedal-Powered Small Appliance Concept</h5>
+                            <p>Develop the design and mechanism for a pedal-powered system to operate a small household or educational appliance (e.g., a small blender, water pump, or phone charger) for use in off-grid or remote areas.</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ME-03</div>
+                            <h5>Modular Furniture System for Multi-Use Spaces</h5>
+                            <p>Design a modular, reconfigurable furniture system (CAD model or scale blueprint) for a common college space (e.g., a classroom or study area) that can be easily transformed to suit different purposes (lecture, group work, relaxation).</p>
+                        </div>
+                        
+                        <div class="theme-card">
+                            <div class="theme-id-badge">ME-04</div>
+                            <h5>Simple Robotic Gripper/End Effector Design</h5>
+                            <p>Design a simple mechanical gripper or end-effector (using linkages and actuators) for a basic pick-and-place task, focusing on maximizing grip strength or versatility using minimal components (CAD or physical model).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="requirements-box">
+                    <h4>📋 Ideathon Submission Requirements:</h4>
+                    <p class="requirement-intro">Focus on <strong>Ideation, Innovation, and PPT Presentation Quality</strong>. Select ONE problem statement from the 6 domains above.</p>
+                    <ul>
+                        <li><strong>Problem Statement ID:</strong> Clearly mention your selected PS ID (e.g., AE-01, AI/ML-02, BME-03, CS/IT-01, ECE-02, ME-04)</li>
+                        <li><strong>Innovative Concept & Solution Design:</strong> Present a creative, practical solution with clear ideation process</li>
+                        <li><strong>PPT Presentation:</strong> Professional slides explaining problem analysis, proposed solution, and expected impact</li>
+                        <li><strong>Technical Feasibility:</strong> Show understanding of implementation requirements and realistic approach</li>
+                        <li><strong>Visual Documentation:</strong> Include diagrams, flowcharts, wireframes, or CAD models as applicable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Competition Levels -->
     <section id="levels" class="levels">
         <div class="container">
             <h2 class="section-title">Competition Levels</h2>
             <div class="levels-grid">
-                <div class="level-card">
-                    <div class="level-number">01</div>
+                <div class="level-card completed">
+                    <div class="level-number">✓</div>
                     <h3>Level 1: Open Theme</h3>
-                    <p class="level-type">📅 Online - Oct 14, 10:10 PM</p>
+                    <p class="level-type">📅 Completed - Oct 14, 10:10 PM</p>
                     <ul class="level-features">
-                        <li>All participants can submit</li>
-                        <li>Open theme - Choose any topic</li>
-                        <li>Submit PPT and GitHub/Deploy link</li>
-                        <li>Both Ideathon & Vibe Coding</li>
+                        <li>All participants submitted</li>
+                        <li>Open theme - Any topic</li>
+                        <li>Results published below</li>
                     </ul>
                 </div>
                 <div class="level-card active">
@@ -220,8 +455,8 @@
                     <p class="level-type">📅 Online - Oct 16, 9:00 PM</p>
                     <ul class="level-features">
                         <li>Selected teams only</li>
-                        <li>Results published after Level 1</li>
-                        <li>Online presentations</li>
+                        <li>Work on specific themes above</li>
+                        <li>Online submissions</li>
                         <li>Top teams advance to finals</li>
                     </ul>
                 </div>
@@ -278,34 +513,61 @@
     <!-- Results Section -->
     <section id="results" class="results">
         <div class="container">
-            <h2 class="section-title">🏆 Level Results</h2>
+            <h2 class="section-title">🏆 Competition Results</h2>
             
-            <!-- Event Tabs -->
-            <div class="event-tabs">
-                <button class="tab-button active" data-event="ideathon">💡 Ideathon</button>
-                <button class="tab-button" data-event="vibecoding">💻 Vibe Coding</button>
-            </div>
+            <!-- Level 1 Results (Completed) -->
+            <div class="level-results-section">
+                <div class="level-results-header">
+                    <h3 class="level-results-title">✅ Level 1 Results - After Level 2 Evaluation</h3>
+                    <p class="level-results-subtitle">
+                        🏆 <strong>Gold Cards:</strong> Selected for Grand Finale at PPG Tech Campus<br>
+                        🎓 <strong>Red Cards:</strong> Invited to Vibe Coding Workshop
+                    </p>
+                    <p class="level-results-note">(Results updated after Level 2 deadline on Oct 16, 10:00 PM)</p>
+                </div>
 
-            <!-- Results Status -->
-            <div id="results-status" class="results-status">
-                <!-- This will be populated by JavaScript -->
-            </div>
+                <!-- Event Tabs for Level 1 -->
+                <div class="event-tabs">
+                    <button class="tab-button active" data-event="level1-ideathon">💡 Ideathon</button>
+                    <button class="tab-button" data-event="level1-vibecoding">💻 Vibe Coding</button>
+                </div>
 
-            <!-- Ideathon Results -->
-            <div id="ideathon-results" class="event-results active">
-                <h3 class="event-results-title">Ideathon Qualifiers</h3>
-                <p class="shortlist-count">Shortlisted Teams: <span id="ideathon-count">0</span></p>
-                <div id="ideathon-grid" class="results-grid">
-                    <!-- Results will be loaded from data.json -->
+                <!-- Level 1 Ideathon Results -->
+                <div id="level1-ideathon-results" class="event-results active">
+                    <h4 class="event-results-title">Ideathon Qualifiers</h4>
+                    <p class="shortlist-count">Shortlisted Teams: <span id="level1-ideathon-count">0</span></p>
+                    <div id="level1-ideathon-grid" class="results-grid">
+                        <!-- Results will be loaded from ideathon.json -->
+                    </div>
+                </div>
+
+                <!-- Level 1 Vibe Coding Results -->
+                <div id="level1-vibecoding-results" class="event-results">
+                    <h4 class="event-results-title">Vibe Coding Qualifiers</h4>
+                    <p class="shortlist-count">Shortlisted Teams: <span id="level1-vibecoding-count">0</span></p>
+                    <div id="level1-vibecoding-grid" class="results-grid">
+                        <!-- Results will be loaded from vibecoding.json -->
+                    </div>
                 </div>
             </div>
 
-            <!-- Vibe Coding Results -->
-            <div id="vibecoding-results" class="event-results">
-                <h3 class="event-results-title">Vibe Coding Qualifiers</h3>
-                <p class="shortlist-count">Shortlisted Teams: <span id="vibecoding-count">0</span></p>
-                <div id="vibecoding-grid" class="results-grid">
-                    <!-- Results will be loaded from data.json -->
+            <!-- Divider -->
+            <div class="results-divider"></div>
+
+            <!-- Level 2 Results (Upcoming) -->
+            <div class="level-results-section">
+                <div class="level-results-header level-2-pending">
+                    <h3 class="level-results-title">⏳ Level 2 Semi-Final Results</h3>
+                    <p class="level-results-subtitle">Results will be published on <strong>October 16, 2025 at 10:00 PM</strong></p>
+                    <p class="level-results-note">(1 hour after the deadline)</p>
+                </div>
+
+                <div class="upcoming-results-message">
+                    <div class="upcoming-icon">🎯</div>
+                    <h4>Semi-Final in Progress</h4>
+                    <p>Shortlisted teams are currently working on their Level 2 submissions.</p>
+                    <p class="deadline-reminder">📅 Deadline: October 16, 2025 - 9:00 PM</p>
+                    <p class="results-announcement">🏆 Results Announcement: October 16, 2025 - 10:00 PM</p>
                 </div>
             </div>
         </div>

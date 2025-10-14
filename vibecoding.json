@@ -3,253 +3,111 @@
 
     {
       "teamName": "BRAIN BREAKERS",
-      "members": [
-        "POOVARASAN.K",
-        "ABIJITH.K",
-        "JAYASRI.R",
-        "KIRUTHIKA.N",
-        "KANIKA.K"
-      ],
-      "projectName": "TechVibes",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://techvibes.lovable.app/auth"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "TECH TITANS",
-      "members": [
-        "Naveen.M.S",
-        "Niranjan.S",
-        "Raman.K"
-      ],
-      "projectName": "SkillMentorAI",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Naveen75cmd/SkillMentorAI",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "THE HACKENING",
-      "members": [
-        "Team Member 1"
-      ],
-      "projectName": "Internship Website",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://internship-website-d-g6kw.bolt.host/"
+     "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Strikers",
-      "members": [
-        "Akhilash S",
-        "Ajay Sabarish A",
-        "Jayavanth P",
-        "Imman Hussain Z",
-        "Gokul S"
-      ],
-      "projectName": "TRUST_SHIELD_2",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Jayavanth12/TRUST_SHIELD_2",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "TECH CODERS",
-      "members": [
-        "Elango. P",
-        "Haridas. V",
-        "Maveeran. V",
-        "Somasundaram. T",
-        "Prabhu K.V"
-      ],
-      "projectName": "MindPathAI",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Elangoit001/MindPathAI",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "MINDSPARK",
-      "members": [
-        "R.PRAVINRAJ",
-        "S.VISHAL",
-        "S.GOPIKA",
-        "S.RAGUPRASATH",
-        "S.SUBA SHREE",
-        "S.VIDHYA",
-        "M.DURKA SRI"
-      ],
-      "projectName": "EduVault Portal",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://eduvaultportal.vercel.app/"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Vibe coders",
-      "members": [
-        "Ganga",
-        "Varsha",
-        "Manoja",
-        "Sanjana",
-        "Tharun"
-      ],
-      "projectName": "Happypaws",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/varsha-1708/Happypaws-main.git",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Zoro",
-      "members": [
-        "Prasheetha Senthil Kumar"
-      ],
-      "projectName": "SpotGap",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://spotgap.preview.emergentagent.com/"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "GEFORCE",
-      "members": [
-        "Jeyadina.M",
-        "J.Varshana",
-        "Jaishanth Raja. M. V",
-        "Logesh. A"
-      ],
-      "projectName": "Marvel Portfolio Generator",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Logesh-AIDS/marvel-portfolio-generator",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Byte Busters",
-      "members": [
-        "Monish",
-        "Samvarthini",
-        "shaminie",
-        "nithishkumar",
-        "mohammed al ameen"
-      ],
-      "projectName": "PPG",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/monish18106/ppg.git",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Ai Ino Crafters Soluiton",
-      "members": [
-        "Sam D",
-        "Sooriyaa VG"
-      ],
-      "projectName": "sleep-tracker-app",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Samrocz05/sleep-tracker-app",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Nova",
-      "members": [
-        "Swetha",
-        "Sree girija",
-        "Aiswarya"
-      ],
-      "projectName": "AA Flax Seven",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://aa-flax-seven.vercel.app/"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Tech breakers",
-      "members": [
-        "S.Avinash",
-        "RK.Abishek"
-      ],
-      "projectName": "Study-planner-2",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/Noble1234678/Study-planner-2.git",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Technexora",
-      "members": [
-        "Dharni sri D S",
-        "Sangamithra .S",
-        "Kaviya.B"
-      ],
-      "projectName": "Claude AI UI Project",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://claude.ai/public/artifacts/71b7c454-1f7f-4870-91fa-d55555d7c537"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "TEAM REBEL",
-      "members": [
-        "VARATHARAJAN K",
-        "NITHEESWAR A",
-        "PRAKASH A",
-        "RAGAVI R"
-      ],
-      "projectName": "Food-Donating-Web-Application-Platform",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/PrakashWebDevX/Food-Donating-Web-Application-Platform",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Technical Wolves",
-      "members": [
-        "Gayathri K",
-        "Asvanth G K",
-        "Dharanika M",
-        "Dharshana M"
-      ],
-      "projectName": "Farm Aid X Project",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://farm-aid-x-project.vercel.app/login.html"
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "NEO",
-      "members": [
-        "RAJAVARMAN",
-        "DHARANEESHWARN",
-        "SRI HARI PRASANTH",
-        "PARTHIBAN",
-        "VINOTH"
-      ],
-      "projectName": "game-hub",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": "https://github.com/rajavaramanv/game-hub",
-      "deployLink": null
+      "Qulified":[
+        "level 1"
+      ]
     },
     {
       "teamName": "Algorithm AvengeHERs",
-      "members": [
-        "Sasmitha.S",
-        "Sountharya.M",
-        "Suganya.A",
-        "Varshini.M",
-        "Vivekamithra.S",
-        "Yazhini.R"
-      ],
-      "projectName": "Smart Street Light",
-      "category": "Vibe Coding",
-      "score": 0,
-      "github": null,
-      "deployLink": "https://smart-street-light-s-rrca.bolt.host"
+     "Qulified":[
+        "level 1"
+      ]
     }
   ]
 }

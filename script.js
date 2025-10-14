@@ -1,6 +1,46 @@
 // Configuration - Set your event deadlines here
 const DEADLINE_LEVEL1 = new Date('2025-10-14T22:10:00').getTime(); // Oct 14, 10:10 PM (Round 1)
 const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
+const RESULTS_LEVEL2_ANNOUNCEMENT = new Date('2025-10-16T22:00:00').getTime(); // Oct 16, 10:00 PM (1 hour after Level 2 deadline)
+
+// Navbar Scroll Effect
+const navbar = document.querySelector('.navbar');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Active Link Highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinksAll = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinksAll.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+            link.classList.add('active');
+        }
+    });
+});
 
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
@@ -116,14 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
     stickies.forEach(sticky => new DraggableSticky(sticky));
 });
 
-// Countdown Timer
+// Countdown Timer - Focus on Level 2
 function updateCountdown() {
     const now = new Date().getTime();
     
-    // Update Level 1 Countdown
-    updateLevelCountdown(DEADLINE_LEVEL1, 'l1', 'Level 1 Submission');
-    
-    // Update Level 2 Countdown
+    // Update Level 2 Countdown (Main focus)
     updateLevelCountdown(DEADLINE_LEVEL2, 'l2', 'Level 2 Semi-Final');
 }
 
@@ -140,10 +177,6 @@ function updateLevelCountdown(deadline, suffix, eventName) {
         document.getElementById(`deadline-status-${suffix}`).innerHTML = 
             '<span style="color: #f5576c; font-weight: 600;">⏰ Deadline Passed!</span>';
         
-        // Load results after Level 1 deadline
-        if (suffix === 'l1') {
-            loadResults();
-        }
         return;
     }
     
@@ -174,14 +207,10 @@ function updateLevelCountdown(deadline, suffix, eventName) {
 
 // Load Results from separate JSON files
 async function loadResults() {
-    const ideathonGrid = document.getElementById('ideathon-grid');
-    const vibeCodingGrid = document.getElementById('vibecoding-grid');
-    const resultsStatus = document.getElementById('results-status');
+    const level1IdeathonGrid = document.getElementById('level1-ideathon-grid');
+    const level1VibeCodingGrid = document.getElementById('level1-vibecoding-grid');
 
-    const now = new Date().getTime();
-    const level1Passed = DEADLINE_LEVEL1 - now < 0;
-
-    // Try to fetch results regardless of deadline so counts show real data
+    // Try to fetch Level 1 results
     let ideathonData = { participants: [] };
     let vibeCodingData = { participants: [] };
 
@@ -199,122 +228,105 @@ async function loadResults() {
         console.warn('Could not fetch vibecoding.json', e);
     }
 
-    // Update counts immediately after attempting to fetch files so the UI reflects data asap
-    // Fallback: try to read inline JSON blocks if fetch didn't return participants
+    // Update Level 1 counts
+    updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || [], 'level1');
+
+    // Check if Level 1 results are available
     try {
-        if ((!ideathonData.participants || ideathonData.participants.length === 0) && document.getElementById('ideathon-data')) {
-            const raw = document.getElementById('ideathon-data').textContent.trim();
-            if (raw) {
-                const parsed = JSON.parse(raw);
-                if (parsed && Array.isArray(parsed.participants) && parsed.participants.length > 0) {
-                    ideathonData = parsed;
-                }
-            }
-        }
-    } catch (e) {
-        console.warn('Failed to parse inline ideathon data', e);
-    }
-
-    try {
-        if ((!vibeCodingData.participants || vibeCodingData.participants.length === 0) && document.getElementById('vibecoding-data')) {
-            const raw = document.getElementById('vibecoding-data').textContent.trim();
-            if (raw) {
-                const parsed = JSON.parse(raw);
-                if (parsed && Array.isArray(parsed.participants) && parsed.participants.length > 0) {
-                    vibeCodingData = parsed;
-                }
-            }
-        }
-    } catch (e) {
-        console.warn('Failed to parse inline vibecoding data', e);
-    }
-
-    updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
-
-        // Check if results are available (assuming if participants array exists and has items)
-        try {
-            const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;
-            const vibeCodingAvailable = vibeCodingData.participants && vibeCodingData.participants.length > 0;
+        const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;
+        const vibeCodingAvailable = vibeCodingData.participants && vibeCodingData.participants.length > 0;
 
         if (ideathonAvailable || vibeCodingAvailable) {
-            resultsStatus.innerHTML = `
-                <p style="color: #4facfe; font-weight: 600;">
-                    🎉 Congratulations to all Level 2 Qualifiers! 🎉
-                </p>
-            `;
-
-            // Render Ideathon results (already sorted by score in JSON)
+            // Render Level 1 Ideathon results
             if (ideathonAvailable) {
-                ideathonGrid.innerHTML = ideathonData.participants.map((participant, index) =>
+                level1IdeathonGrid.innerHTML = ideathonData.participants.map((participant, index) =>
                     createResultCard(participant, index + 1)
                 ).join('');
             } else {
-                ideathonGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
+                level1IdeathonGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
 
-            // Render Vibe Coding results (already sorted by score in JSON)
+            // Render Level 1 Vibe Coding results
             if (vibeCodingAvailable) {
-                vibeCodingGrid.innerHTML = vibeCodingData.participants.map((participant, index) =>
+                level1VibeCodingGrid.innerHTML = vibeCodingData.participants.map((participant, index) =>
                     createResultCard(participant, index + 1)
                 ).join('');
             } else {
-                vibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
+                level1VibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
 
-          // Add click handlers to all result cards
-          addResultCardClickHandlers();
+            // Add click handlers to all result cards (though simplified, keeping for future use)
+            addResultCardClickHandlers();
 
-          // Update shortlist counts on successful render
-          updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
+            // Update Level 1 shortlist counts
+            updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || [], 'level1');
 
         } else {
-            resultsStatus.innerHTML = `
-                <p style="color: var(--text-secondary);">
-                    ⏳ Results are being evaluated...<br>
-                    <strong>Check back in a few hours!</strong>
-                </p>
-            `;
-            ideathonGrid.innerHTML = '';
-            vibeCodingGrid.innerHTML = '';
-                // Update shortlist counts
-                updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
+            level1IdeathonGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Results will be published soon.</p>';
+            level1VibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Results will be published soon.</p>';
+            updateShortlistCounts([], [], 'level1');
         }
         
     } catch (error) {
         console.error('Error processing results:', error);
-        resultsStatus.innerHTML = `
-            <p style="color: var(--text-secondary);">
-                ⏳ Results are being evaluated...<br>
-                <strong>Check back in a few hours!</strong>
-            <p style="color: #f5576c;">
-                ❌ Could not load results.<br>
-                <strong>Please try again later or contact support.</strong>
-            </p>
-        `;
-        ideathonGrid.innerHTML = '';
-        vibeCodingGrid.innerHTML = '';
-        // Reset counts on error
-        updateShortlistCounts([], []);
+        level1IdeathonGrid.innerHTML = '<p style="text-align: center; color: #f5576c;">Could not load results. Please try again later.</p>';
+        level1VibeCodingGrid.innerHTML = '<p style="text-align: center; color: #f5576c;">Could not load results. Please try again later.</p>';
+        updateShortlistCounts([], [], 'level1');
     }
 }
 
-    // Helper to update the shortlist counts in the UI
-    function updateShortlistCounts(ideathonList, vibeList) {
-        const ideathonCountElem = document.getElementById('ideathon-count');
-        const vibeCountElem = document.getElementById('vibecoding-count');
+// Helper to update the shortlist counts in the UI
+function updateShortlistCounts(ideathonList, vibeList, level = 'level1') {
+    const ideathonCountElem = document.getElementById(`${level}-ideathon-count`);
+    const vibeCountElem = document.getElementById(`${level}-vibecoding-count`);
 
-        if (ideathonCountElem) ideathonCountElem.textContent = String(ideathonList.length || 0);
-        if (vibeCountElem) vibeCountElem.textContent = String(vibeList.length || 0);
-    }
+    if (ideathonCountElem) ideathonCountElem.textContent = String(ideathonList.length || 0);
+    if (vibeCountElem) vibeCountElem.textContent = String(vibeList.length || 0);
+}
 
-// Create result card HTML - simplified to show only team name
+// Create result card HTML - with different styles based on qualification status and time
 function createResultCard(participant, rank) {
-    return `
-        <div class="result-card qualified" data-team="${participant.teamName}">
-            <h3>${participant.teamName}</h3>
-            <div class="next-level-badge">✨ Qualified for Level 2! ✨</div>
-        </div>
-    `;
+    const now = new Date().getTime();
+    const isBeforeResultsAnnouncement = now < RESULTS_LEVEL2_ANNOUNCEMENT;
+    
+    // Before Oct 16, 10:00 PM - Show "All the Best" cards for all Level 2 participants
+    if (isBeforeResultsAnnouncement) {
+        return `
+            <div class="result-card level2-participant" data-team="${participant.teamName}">
+                <div class="best-wishes-icon">🌟</div>
+                <h3>${participant.teamName}</h3>
+                <div class="best-wishes-badge">✨ All the Best for Level 2! ✨</div>
+                <div class="best-wishes-note">Deadline: Oct 16, 9:00 PM</div>
+            </div>
+        `;
+    }
+    
+    // After Oct 16, 10:00 PM - Show Grand Final or Workshop cards
+    const isGrandFinalQualified = participant.Qulified && 
+        (participant.Qulified.includes('grand final') || 
+         participant.Qulified.includes('Grand Final') ||
+         participant.Qulified.includes('level 3'));
+    
+    if (isGrandFinalQualified) {
+        // Premium card for grand final qualifiers
+        return `
+            <div class="result-card grand-final-qualified" data-team="${participant.teamName}">
+                <div class="grand-final-crown">👑</div>
+                <h3>${participant.teamName}</h3>
+                <div class="grand-final-badge">🏆 SELECTED FOR GRAND FINALE! 🏆</div>
+                <div class="grand-final-note">Competing at PPG Tech Campus</div>
+            </div>
+        `;
+    } else {
+        // Red card for teams not advancing to grand final
+        return `
+            <div class="result-card not-advanced" data-team="${participant.teamName}">
+                <h3>${participant.teamName}</h3>
+                <div class="workshop-badge">🎓 Invited to Vibe Coding Workshop</div>
+                <div class="workshop-note">Thank you for participating!</div>
+            </div>
+        `;
+    }
 }
 
 // Add click handlers to result cards (simplified - no expansion needed)
@@ -345,20 +357,31 @@ function createConfetti(card) {
 // Event Tab Switching
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-button');
-    const eventResults = document.querySelectorAll('.event-results');
     
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all tabs and results
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            eventResults.forEach(result => result.classList.remove('active'));
+            const eventType = button.getAttribute('data-event');
+            
+            // Get the parent section to determine which tabs to affect
+            const parentSection = button.closest('.level-results-section');
+            if (!parentSection) return;
+            
+            // Get tabs and results within this section only
+            const sectionTabs = parentSection.querySelectorAll('.tab-button');
+            const sectionResults = parentSection.querySelectorAll('.event-results');
+            
+            // Remove active class from all tabs and results in this section
+            sectionTabs.forEach(btn => btn.classList.remove('active'));
+            sectionResults.forEach(result => result.classList.remove('active'));
             
             // Add active class to clicked tab
             button.classList.add('active');
             
             // Show corresponding results
-            const eventType = button.getAttribute('data-event');
-            document.getElementById(`${eventType}-results`).classList.add('active');
+            const targetResults = document.getElementById(`${eventType}-results`);
+            if (targetResults) {
+                targetResults.classList.add('active');
+            }
         });
     });
 });
