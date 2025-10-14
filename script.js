@@ -1,5 +1,5 @@
 // Configuration - Set your event deadlines here
-const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM (Round 1)
+const DEADLINE_LEVEL1 = new Date('2025-10-14T21:00:00').getTime(); // Oct 14, 8:00 PM (Round 1)
 const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
 
 // Mobile Navigation Toggle
@@ -250,10 +250,14 @@ async function loadResults() {
         }
     } catch (error) {
         console.error('Error loading results:', error);
+        // This message is more specific for a technical failure
         resultsStatus.innerHTML = `
             <p style="color: var(--text-secondary);">
                 ⏳ Results are being evaluated...<br>
                 <strong>Check back in a few hours!</strong>
+            <p style="color: #f5576c;">
+                ❌ Could not load results.<br>
+                <strong>Please try again later or contact support.</strong>
             </p>
         `;
         ideathonGrid.innerHTML = '';
