@@ -1,5 +1,5 @@
 // Configuration - Set your event deadlines here
-const DEADLINE_LEVEL1 = new Date('2025-10-14T21:00:00').getTime(); // Oct 14, 8:00 PM (Round 1)
+const DEADLINE_LEVEL1 = new Date('2025-10-14T21:30:00').getTime(); // Oct 14, 8:00 PM (Round 1)
 const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
 
 // Mobile Navigation Toggle
@@ -7,6 +7,13 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (navToggle) {
+    const closeNav = () => {
+        navLinks.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+        document.body.style.overflow = '';
+    };
+
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         const isExpanded = navLinks.classList.contains('active');
@@ -26,6 +33,7 @@ if (navToggle) {
             document.body.style.overflow = '';
         });
     });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
@@ -34,6 +42,8 @@ if (navToggle) {
             navToggle.setAttribute('aria-expanded', 'false');
             navToggle.textContent = '☰';
             document.body.style.overflow = '';
+        if (navLinks.classList.contains('active') && !navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            closeNav();
         }
     });
 }
@@ -185,7 +195,7 @@ async function loadResults() {
     if (!level1Passed) {
         resultsStatus.innerHTML = `
             <p style="color: var(--text-secondary);">
-                🕐 Results will be published after Level 1 deadline (Oct 14, 8:00 PM).<br>
+                🕐 Results will be published after Level 1 deadline (Oct 14, 9:30 PM).<br>
                 <strong>Stay tuned!</strong>
             </p>
         `;
