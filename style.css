@@ -400,6 +400,26 @@ body {
     margin-top: 1rem;
 }
 
+.deadline-status .status-active {
+    color: #4facfe;
+}
+
+.deadline-status .status-urgent {
+    color: #f5576c;
+    font-weight: 600;
+}
+
+.deadline-status .status-critical {
+    color: #f5576c;
+    font-weight: 700;
+    animation: pulse 1s infinite;
+}
+
+.deadline-status .status-passed {
+    color: #f5576c;
+    font-weight: 600;
+}
+
 /* CTA Button */
 .cta-button {
     display: inline-block;
@@ -841,6 +861,11 @@ section {
 
 .result-team strong {
     color: var(--text-primary);
+}
+
+.result-link {
+    color: #667eea;
+    text-decoration: none;
 }
 
 .next-level-badge {
