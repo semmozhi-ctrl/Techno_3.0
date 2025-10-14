@@ -146,7 +146,7 @@
                 <!-- Level 2 Countdown -->
                 <div class="event-countdown-section">
                     <h4 class="event-title">🎯 Level 2 Semi-Final (Online)</h4>
-                    <p class="event-date">October 16, 2025 - 8:00 PM</p>
+                    <p class="event-date">October 16, 2025 - 9:00 PM</p>
                     <div id="countdown-level2" class="countdown">
                         <div class="countdown-item">
                             <span id="days-l2" class="countdown-value">00</span>
@@ -206,7 +206,7 @@
                 <div class="level-card">
                     <div class="level-number">01</div>
                     <h3>Level 1: Open Theme</h3>
-                    <p class="level-type">📅 Online - Oct 14, 3:00 PM</p>
+                    <p class="level-type">📅 Online - Oct 14, 8:00 PM</p>
                     <ul class="level-features">
                         <li>All participants can submit</li>
                         <li>Open theme - Choose any topic</li>
@@ -260,10 +260,10 @@
                     </ul>
                 </div>
                 <div class="submit-buttons">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJ_0jyEaUFOhT168B2_lNiOnESrRmEBFb31gFwUu9vSbMqag/viewform?usp=sharing&ouid=102977611735427703799" target="_blank" class="submit-button ideathon-btn">
+                    <a href="#" class="submit-button ideathon-btn" data-form="https://docs.google.com/forms/d/e/1FAIpQLSdJ_0jyEaUFOhT168B2_lNiOnESrRmEBFb31gFwUu9vSbMqag/viewform?usp=sharing&ouid=102977611735427703799">
                         Submit Ideathon Project
                     </a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe29-9gdOIBJD_qa-n8JJrFh0h3ZAWWabUzLFoQpfIhLk0-xw/viewform?usp=sharing&ouid=102977611735427703799" target="_blank" class="submit-button vibe-btn">
+                    <a href="#" class="submit-button vibe-btn" data-form="https://docs.google.com/forms/d/e/1FAIpQLSe29-9gdOIBJD_qa-n8JJrFh0h3ZAWWabUzLFoQpfIhLk0-xw/viewform?usp=sharing&ouid=102977611735427703799">
                         Submit Vibe Coding Project
                     </a>
                 </div>
@@ -322,6 +322,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal for Submission Confirmation -->
+    <div id="submit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Submission Successful!</h2>
+            <p id="modal-message">Your project has been submitted. Redirecting to the form...</p>
+            <button id="modal-button">OK</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

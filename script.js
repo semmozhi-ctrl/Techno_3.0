@@ -1,6 +1,6 @@
 // Configuration - Set your event deadlines here
 const DEADLINE_LEVEL1 = new Date('2025-10-14T20:00:00').getTime(); // Oct 14, 8:00 PM
-const DEADLINE_LEVEL2 = new Date('2025-10-16T20:00:00').getTime(); // Oct 16, 8:00 PM
+const DEADLINE_LEVEL2 = new Date('2025-10-16T21:00:00').getTime(); // Oct 16, 8:00 PM
 
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
@@ -447,6 +447,74 @@ document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
     });
 });
 
+// Modal functionality for submission confirmation with localStorage tracking
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('submit-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMessage = document.getElementById('modal-message');
+    const modalButton = document.getElementById('modal-button');
+    const closeBtn = document.querySelector('.close');
+    let currentFormUrl = '';
+
+    // Check submission status on page load and update button states
+    updateButtonStates();
+
+    // Handle submit button clicks
+    document.querySelectorAll('.submit-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const formType = this.classList.contains('ideathon-btn') ? 'ideathon' : 'vibe';
+            currentFormUrl = this.getAttribute('data-form');
+
+            // Always show confirmation modal (no prevention of multiple submissions)
+            if (this.classList.contains('ideathon-btn')) {
+                modalTitle.textContent = 'Submit Ideathon Project';
+                modalMessage.textContent = 'You are about to submit your Ideathon project. Make sure all your details are correct before proceeding.';
+            } else if (this.classList.contains('vibe-btn')) {
+                modalTitle.textContent = 'Submit Vibe Coding Project';
+                modalMessage.textContent = 'You are about to submit your Vibe Coding project. Make sure all your details are correct before proceeding.';
+            }
+            modalButton.textContent = 'Proceed to Form';
+            modalButton.onclick = () => proceedToForm(formType);
+
+            modal.style.display = 'block';
+        });
+    });
+
+    // Handle modal close
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Function to proceed to form and mark as submitted
+    function proceedToForm(formType) {
+        // Mark as submitted in localStorage
+        localStorage.setItem(`technokreaticon_${formType}_submitted`, 'true');
+        localStorage.setItem(`technokreaticon_${formType}_submitted_date`, new Date().toISOString());
+
+        modal.style.display = 'none';
+        if (currentFormUrl) {
+            window.open(currentFormUrl, '_blank');
+        }
+
+        // Update button states after submission
+        setTimeout(updateButtonStates, 100);
+    }
+
+    // Function to update button states based on localStorage (removed disabling)
+    function updateButtonStates() {
+        // Buttons remain enabled, no visual changes needed
+        // localStorage tracking is still used for modal messages
+    }
+});
+
 // Add CSS for ripple effect dynamically
 const rippleStyle = document.createElement('style');
 rippleStyle.textContent = `
@@ -454,7 +522,7 @@ rippleStyle.textContent = `
         position: relative;
         overflow: hidden;
     }
-    
+
     .ripple {
         position: absolute;
         border-radius: 50%;
@@ -463,7 +531,7 @@ rippleStyle.textContent = `
         animation: ripple-animation 0.6s ease-out;
         pointer-events: none;
     }
-    
+
     @keyframes ripple-animation {
         to {
             transform: scale(4);

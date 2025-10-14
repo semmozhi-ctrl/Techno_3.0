@@ -1,0 +1,5 @@
+- [x] Add modal HTML structure in index.html
+- [x] Add modal CSS styles in style.css
+- [x] Add JavaScript logic in script.js for submit button handling, localStorage tracking, and redirects
+- [x] Remove "already submitted" popup - only show confirmation modal for form submission
+- [ ] Test the functionality
