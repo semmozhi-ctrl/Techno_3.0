@@ -762,6 +762,16 @@ section {
     margin-bottom: 2rem;
     color: var(--text-secondary);
 }
+.shortlist-count {
+    text-align: center;
+    font-size: 1rem;
+    color: #aab2ff;
+    margin-bottom: 1rem;
+    background: rgba(102,126,234,0.06);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+}
 .results-status {
     text-align: center;
     font-size: 1.3rem;

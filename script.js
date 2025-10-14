@@ -181,31 +181,28 @@ async function loadResults() {
     const now = new Date().getTime();
     const level1Passed = DEADLINE_LEVEL1 - now < 0;
 
-    // Check if Level 1 deadline has passed
-    if (!level1Passed) {
-        resultsStatus.innerHTML = `
-            <p style="color: var(--text-secondary);">
-                🕐 Results will be published after Level 1 deadline (Oct 14, 9:30 PM).<br>
-                <strong>Stay tuned!</strong>
-            </p>
-        `;
-        ideathonGrid.innerHTML = '';
-        vibeCodingGrid.innerHTML = '';
-        return;
+    // Try to fetch results regardless of deadline so counts show real data
+    let ideathonData = { participants: [] };
+    let vibeCodingData = { participants: [] };
+
+    try {
+        const ideathonResponse = await fetch('ideathon.json');
+        if (ideathonResponse.ok) ideathonData = await ideathonResponse.json();
+    } catch (e) {
+        console.warn('Could not fetch ideathon.json', e);
     }
 
     try {
-        // Load Ideathon results
-        const ideathonResponse = await fetch('ideathon.json');
-        const ideathonData = await ideathonResponse.json();
-
-        // Load Vibe Coding results
         const vibeCodingResponse = await fetch('vibecoding.json');
-        const vibeCodingData = await vibeCodingResponse.json();
+        if (vibeCodingResponse.ok) vibeCodingData = await vibeCodingResponse.json();
+    } catch (e) {
+        console.warn('Could not fetch vibecoding.json', e);
+    }
 
         // Check if results are available (assuming if participants array exists and has items)
-        const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;
-        const vibeCodingAvailable = vibeCodingData.participants && vibeCodingData.participants.length > 0;
+        try {
+            const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;
+            const vibeCodingAvailable = vibeCodingData.participants && vibeCodingData.participants.length > 0;
 
         if (ideathonAvailable || vibeCodingAvailable) {
             resultsStatus.innerHTML = `
@@ -235,8 +232,11 @@ async function loadResults() {
                 vibeCodingGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No results available yet.</p>';
             }
 
-            // Add click handlers to all result cards
-            addResultCardClickHandlers();
+          // Add click handlers to all result cards
+          addResultCardClickHandlers();
+
+          // Update shortlist counts on successful render
+          updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
 
         } else {
             resultsStatus.innerHTML = `
@@ -247,10 +247,12 @@ async function loadResults() {
             `;
             ideathonGrid.innerHTML = '';
             vibeCodingGrid.innerHTML = '';
+                // Update shortlist counts
+                updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
         }
+        
     } catch (error) {
-        console.error('Error loading results:', error);
-        // This message is more specific for a technical failure
+        console.error('Error processing results:', error);
         resultsStatus.innerHTML = `
             <p style="color: var(--text-secondary);">
                 ⏳ Results are being evaluated...<br>
@@ -262,18 +264,26 @@ async function loadResults() {
         `;
         ideathonGrid.innerHTML = '';
         vibeCodingGrid.innerHTML = '';
+        // Reset counts on error
+        updateShortlistCounts([], []);
     }
 }
 
+    // Helper to update the shortlist counts in the UI
+    function updateShortlistCounts(ideathonList, vibeList) {
+        const ideathonCountElem = document.getElementById('ideathon-count');
+        const vibeCountElem = document.getElementById('vibecoding-count');
+
+        if (ideathonCountElem) ideathonCountElem.textContent = String(ideathonList.length || 0);
+        if (vibeCountElem) vibeCountElem.textContent = String(vibeList.length || 0);
+    }
+
 // Create result card HTML
 function createResultCard(participant, rank) {
-    const leaderName = participant.members && participant.members.length > 0 ? participant.members[0] : 'N/A';
-    
+    // Render card without rank or explicit leader line (shortlisted UI)
     return `
         <div class="result-card qualified" data-team="${participant.teamName}">
-            <div class="result-rank">Rank #${rank}</div>
             <h3>${participant.teamName}</h3>
-            <p class="result-category">Leader: <strong>${leaderName}</strong></p>
             <div class="result-team"><strong>All Members:</strong> ${participant.members.join(', ')}</div>
             <div class="result-team"><strong>Project:</strong> ${participant.projectName}</div>
             ${participant.github ? `<div class="result-team"><strong>GitHub:</strong> <a href="${participant.github}" target="_blank" style="color: #667eea;">View Code</a></div>` : ''}
@@ -391,11 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     
-    // Load results if Level 1 deadline has passed
-    const now = new Date().getTime();
-    if (DEADLINE_LEVEL1 - now < 0) {
-        loadResults();
-    }
+    // Load results immediately so shortlist counts show even before deadline
+    loadResults();
 });
 
 // Intersection Observer for scroll animations
