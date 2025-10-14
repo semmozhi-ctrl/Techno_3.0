@@ -199,6 +199,9 @@ async function loadResults() {
         console.warn('Could not fetch vibecoding.json', e);
     }
 
+    // Update counts immediately after attempting to fetch files so the UI reflects data asap
+    updateShortlistCounts(ideathonData.participants || [], vibeCodingData.participants || []);
+
         // Check if results are available (assuming if participants array exists and has items)
         try {
             const ideathonAvailable = ideathonData.participants && ideathonData.participants.length > 0;

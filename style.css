@@ -772,6 +772,15 @@ section {
     padding: 0.5rem 1rem;
     border-radius: 999px;
 }
+
+.shortlist-count span {
+    font-weight: 800;
+    color: #eef2ff;
+    background: rgba(102, 126, 234, 0.18);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+}
 .results-status {
     text-align: center;
     font-size: 1.3rem;
