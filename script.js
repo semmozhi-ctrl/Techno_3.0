@@ -201,7 +201,7 @@ function updateLevelCountdown(deadline, suffix, eventName) {
             `<span style="color: #f5576c; font-weight: 600;">⚠️ Hurry! Only ${hours} hour${hours > 1 ? 's' : ''} remaining!</span>`;
     } else {
         document.getElementById(`deadline-status-${suffix}`).innerHTML = 
-            `<span style="color: #f5576c; font-weight: 700; animation: pulse 1s infinite;">🔥 Last ${minutes} minutes! Submit now!</span>`;
+            `<span style="color: #f5576c; font-weight: 700; animation: pulse 1s infinite;">🔥 Last ${minutes} minutes! </span>`;
     }
 }
 
