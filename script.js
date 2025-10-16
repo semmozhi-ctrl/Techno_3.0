@@ -1,6 +1,6 @@
 // Configuration - Set your event deadlines here
 const DEADLINE_LEVEL1 = new Date('2025-10-14T22:10:00').getTime(); // Oct 14, 10:10 PM (Round 1)
-const DEADLINE_LEVEL2 = new Date('2025-10-16T22:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
+const DEADLINE_LEVEL2 = new Date('2025-10-16T23:11:00').getTime(); // Oct 16, 9:00 PM (Round 2)
 const RESULTS_LEVEL2_ANNOUNCEMENT = new Date('2025-10-16T22:00:00').getTime(); // Oct 16, 10:00 PM (1 hour after Level 2 deadline)
 
 // Navbar Scroll Effect
@@ -198,10 +198,10 @@ function updateLevelCountdown(deadline, suffix, eventName) {
             `<span style="color: #4facfe;">📅 ${eventName} closes in ${days} day${days > 1 ? 's' : ''}</span>`;
     } else if (hours > 0) {
         document.getElementById(`deadline-status-${suffix}`).innerHTML = 
-            `<span style="color: #f5576c; font-weight: 600;">⚠️ Hurry! Only ${hours} hour${hours > 1 ? 's' : ''} remaining!</span>`;
+            `<span style="color: #f5576c; font-weight: 600;">Result Will Be Published in ${hours} hour${hours > 1 ? 's' : ''}🔥</span>`;
     } else {
         document.getElementById(`deadline-status-${suffix}`).innerHTML = 
-            `<span style="color: #f5576c; font-weight: 700; animation: pulse 1s infinite;">🔥 Last ${minutes} minutes! </span>`;
+            `<span style="color: #f5576c; font-weight: 700; animation: pulse 1s infinite;">Result Will Be Published in ${minutes} minutes🔥</span>`;
     }
 }
 
