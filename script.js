@@ -1,7 +1,7 @@
 // Configuration - Set your event deadlines here
 const DEADLINE_LEVEL1 = new Date('2025-10-14T22:10:00').getTime(); // Oct 14, 10:10 PM (Round 1)
 const DEADLINE_LEVEL2 = new Date('2025-10-16T24:00:00').getTime(); // Oct 16, 9:00 PM (Round 2)
-const RESULTS_LEVEL2_ANNOUNCEMENT = new Date('2025-10-16T22:00:00').getTime(); // Oct 16, 10:00 PM (1 hour after Level 2 deadline)
+const RESULTS_LEVEL2_ANNOUNCEMENT = new Date('2025-10-16T24:00:00').getTime(); // Oct 16, 10:00 PM (1 hour after Level 2 deadline)
 
 // Navbar Scroll Effect
 const navbar = document.querySelector('.navbar');
