@@ -26,13 +26,7 @@
       ]
     },
     {
-      "teamName": "STRIKERS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "NEO",
+      "teamName": "GEFORCE",
       "Qulified":[
         "Grand Finale"
       ]
@@ -44,10 +38,17 @@
       ]
     },
     {
-      "teamName": "THE HACKENING",
+      "teamName": "STRICKERS",
+      "Qulified":[
+        "Grand Finale"
+      ]
+    },
+    {
+      "teamName": "THE HACKING",
       "Qulified":[
         "Grand Finale"
       ]
     }
+
   ]
 }
