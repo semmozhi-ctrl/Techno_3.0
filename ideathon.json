@@ -1,364 +1,41 @@
 {
   "participants": [
-    {
-      "teamName": "NEXAURA",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "THE HACKENING",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "CODEINTELLECTS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "PENTA CODERS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "APEX",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "HUB TITANS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "POWERWISE",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "TECHNO VERTS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "TEAM DIYU",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "KITN'S",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "MEDIMINDS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "IDEA ARCHITECH",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "MANUAL MASTERS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "NEURAL MAVERICK",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "SAM D",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "TRIPLE SPARK",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "AGNITRIYANS",
-     "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "ML STARKS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "MAVERICK",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "TECH CODERS",
-      "Qulified":[
-        "Grand Finale"
-      ]
-    },
-    {
-      "teamName": "Code Rhythms",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "KITN'S",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Triple spark",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "TEAM MAVERICKS",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "MAVERICK",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "TECH CODERS",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Black Squard",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "TECH TITANS",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "CELEBRUS",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Novara",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "The innovators",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Tech kingz",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "VIMARA",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Silent strikers",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Neural Maverick",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Tech Zenin",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Agnitriyans",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Mediminds",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "The Hackening",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Techno Verts",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "AATHIRAN",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "CLEVER MIND",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "TEAM DIYU",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Ideozenith",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "CLEVER MIND",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Techno Stars",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Visionary vibes",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Technical Wolves",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Sam D",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "TECH TITANS",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Idea quad",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Manual Masters",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "MIND SPARK",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Tech spark",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "CLEVER MIND",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "CODEWAVE",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Hack her way",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Torque Tech",
-     "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Task titans",
-      "Qulified":[
-        "level 1"
-      ]
-    },
-    {
-      "teamName": "Techno Frodge",
-      "Qulified":[
-        "level 1"
-      ]
-    }
+    { "teamName": "Powerwise", "Qulified": ["Grand Finale"] },
+    { "teamName": "AKATSUKI", "Qulified": ["Grand Finale"] },
+    { "teamName": "Techno Verts", "Qulified": ["Grand Finale"] },
+    { "teamName": "The Hackening", "Qulified": ["Grand Finale"] },
+    { "teamName": "TEAM DIYU", "Qulified": ["Grand Finale"] },
+    { "teamName": "Manual Masters", "Qulified": ["Grand Finale"] },
+    { "teamName": "Neural Maverick", "Qulified": ["Grand Finale"] },
+    { "teamName": "Nexaura", "Qulified": ["Grand Finale"] },
+    { "teamName": "CODEINTELLECTS", "Qulified": ["Grand Finale"] },
+    { "teamName": "PENTA CODERS", "Qulified": ["Grand Finale"] },
+    { "teamName": "KITN'S", "Qulified": ["Grand Finale"] },
+    { "teamName": "Idea architech", "Qulified": ["Grand Finale"] },
+    { "teamName": "Mediminds", "Qulified": ["Grand Finale"] },
+    { "teamName": "ZORO", "Qulified": ["Grand Finale"] },
+    { "teamName": "The code wizards", "Qulified": ["Grand Finale"] },
+    { "teamName": "TECH CODERS", "Qulified": ["Grand Finale"] },
+    { "teamName": "MAVERICK", "Qulified": ["Grand Finale"] },
+    { "teamName": "ML STARKS", "Qulified": ["Grand Finale"] },
+    { "teamName": "Agnitriyans", "Qulified": ["Grand Finale"] },
+    { "teamName": "Sam D", "Qulified": ["Grand Finale"] },
+    { "teamName": "Techno Stars", "Qulified": ["Grand Finale"] },
+    { "teamName": "AATHIRAN", "Qulified": ["Grand Finale"] },
+    { "teamName": "Idea quad", "Qulified": ["Grand Finale"] },
+    { "teamName": "TECH TITANS", "Qulified": ["Grand Finale"] },
+    { "teamName": "CLEVER MIND", "Qulified": ["Grand Finale"] },
+    { "teamName": "Code Rhythms", "Qulified": ["Grand Finale"] },
+    { "teamName": "CELEBRUS", "Qulified": ["Grand Finale"] },
+    { "teamName": "HUB TITANS", "Qulified": ["Grand Finale"] },
+    { "teamName": "NEUROCRYPT", "Qulified": ["Grand Finale"] },
+    { "teamName": "Nextgen trio", "Qulified": ["Grand Finale"] },
+    { "teamName": "Tech kingz", "Qulified": ["Grand Finale"] },
+    { "teamName": "Code Ninja's", "Qulified": ["Grand Finale"] },
+    { "teamName": "techno frodge", "Qulified": ["Grand Finale"] },
+    { "teamName": "Tech spark", "Qulified": ["Grand Finale"] },
+    { "teamName": "Liftronics", "Qulified": ["Grand Finale"] },
+    { "teamName": "Innovatech", "Qulified": ["Grand Finale"] },
+    { "teamName": "APEX", "Qulified": ["Grand Finale"] }
   ]
 }
